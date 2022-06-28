@@ -1,0 +1,328 @@
+﻿
+@{
+    ViewBag.Title = "ServiceProvider";
+}
+
+<!-- Form Element area Start-->
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list" id="serprovidercreate">
+                    @*<div class="basic-tb-hd">
+                            <h2>Input Text</h2>
+                            <p>Text Inputs with different sizes by height and column.</p>
+                        </div>*@
+                    <div class="cmp-tb-hd bcs-hd">
+                        <h2>Service provider</h2>
+                        <p>Create Service provider</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-support"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Provider Name" id="txtSName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-mail"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Email Address" id="txtEmailId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-phone"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Contact Number" id="txtContactNumber">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-map"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Location" id="txtLocation">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-map"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Escalation Contact Person" id="txtECName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-map"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Escalation Contact Number" id="txtECNumber">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <button class="btn btn-primary notika-btn-primary" id="btnCreate" onclick="fnSave();">Save</button>
+                            <button class="btn notika-btn-bluegray btn-reco-mg btn-button-mg" onclick="Cancel();">Cancel</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>List Of Service Provider</h2>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-striped"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link href="~/Content/TEST/datatables.css" rel="stylesheet" />
+<script src="~/Content/TEST/datatables.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+    //Global Variables
+    var GlobalId = 0;
+    //Global Variables
+    var Role = @Html.Raw(Json.Encode(@Session["Role"]));
+    $(document).ready(function ()
+    {
+        if (Role != 'Admin' && Role != 'User') {
+
+            $('#serprovidercreate').hide();
+        }
+        LoadData();
+    });
+    //Document Ready Closed
+    function fnEdit(Id) {
+        debugger;
+        var obj = Id;// JSON.parse(Id);
+        $('#txtSName').val(obj.ServiceProvider_Name);
+        $('#txtEmailId').val(obj.Email_Id);
+        $('#txtContactNumber').val(obj.Contact_Number);
+        $('#txtLocation').val(obj.Location);
+        $('#txtECName').val(obj.ECName);
+        $('#txtECNumber').val(obj.ECNumber);
+
+        GlobalId = obj.ServiceProvider_Id;
+        Is_Edit = true;
+        $('#btnCreate').text('Update')
+    }
+    function fnSave()
+    {
+        var ServiceProvider_Name = $.trim($('#txtSName').val());
+        var EmailId=$.trim( $('#txtEmailId').val());
+        var ContactNumber=$.trim($('#txtContactNumber').val());
+        var Location = $.trim($('#txtLocation').val());
+        var ECName=$.trim($('#txtECName').val());
+        var ECNumber=$.trim($('#txtECNumber').val());
+        if (ServiceProvider_Name == "") {
+            ALERT('Please Enter the Service Provider Name');
+            return false;
+        }
+        //if (EmailId == "") {
+        //    ALERT('Please Enter the Email Id');
+        //    return false;
+        //}
+        if (ContactNumber == "") {
+            ALERT('Please Enter the Contact Number');
+            return false;
+        }
+        //if (Location == "") {
+        //    ALERT('Please Enter the Location');
+        //    return false;
+        //}
+
+        $.ajax({
+            url: '@Url.Action("SaveServiceProviderMaster", "Master")',
+            data: "ServiceProvider_Name=" + ServiceProvider_Name + "&EmailId=" + EmailId + "&ContactNumber=" + ContactNumber + "&Location=" + Location + "&Id=" + GlobalId
+            + "&ECName=" + ECName + "&ECNumber=" + ECNumber,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    if (resp.split(':')[0] == "SUCCESS") {
+                        if (GlobalId == 0) {
+                            ALERT("Saved Successfuly.");
+                        }
+                        else {
+                            ALERT("Updated Successfuly.");
+                        }
+                        //$('#txtSName').val('');
+                        //$('#txtEmailId').val('');
+                        //$('#txtContactNumber').val('');
+                        //$('#txtLocation').val('');
+                        //GlobalId = 0;
+                        //$('#btnCreate').text('Save');
+                        fncancel();
+                        LoadData();
+                    }
+                    else if (resp.split(':')[0] == "EXIST") {
+                        alert("Failed to Save. Entered Mailid and Contact number already exist.")
+                    }
+                    else {
+                        ALERT("Error");
+                    }
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+
+    }
+    function LoadData() {
+        $.ajax({
+            url: '@Url.Action("LoadServiceProviderMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>Service Provider Name</th>";
+                    str += "<th>Email Id</th>";
+                    str += "<th>Contact Number</th>";
+                    str += "<th>Location</th>";
+                    str += "<th>E.Contact Person Name</th>";
+                    str += "<th>E.Contact Person Number</th>";
+                    str += "<th>Is Active</th>";
+                    str += "<th>Created By</th>";
+                    str += "<th>Created date</th>";
+                    if (Role == 'Admin' || Role == 'User') {
+                        str += "<th>Action</th>";
+                        str += "<th>Delete</th>";
+                    }
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        str += "<td>" + resp[l].ServiceProvider_Name + "</td>";
+                        str += "<td>" + resp[l].Email_Id + "</td>";
+                        str += "<td>" + resp[l].Contact_Number + "</td>";
+                        str += "<td>" + resp[l].Location + "</td>";
+                        str += "<td>" + resp[l].ECName + "</td>";
+                        str += "<td>" + resp[l].ECNumber + "</td>";
+                        if (resp[l].Is_Active = 1) {
+                            str += "<td>Yes</td>";
+                        } else {
+                            str += "<td>No</td>";
+                        }
+
+                        str += "<td>" + resp[l].Created_By + "</td>";
+                        str += "<td>" + resp[l].Created_Date + "</td>";
+                        var ac = JSON.stringify(resp[l]);
+                        if (Role == 'Admin' || Role == 'User') {
+                            str += "<td><a href='#' onclick=fnEdit(" + ac.replace(/\ /g, "&nbsp;") + ");>Edit</a></td>";
+                            str += "<td><a href='#' onclick=Delete(" + resp[l].ServiceProvider_Id + ");>Delete</a></td>";
+                        }
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblData').empty();
+                    $('#tblData').append(str);
+                    $('#tblData').DataTable().destroy();
+                    $('#tblData').DataTable(
+                        {
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'copyHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6, 7,8]
+                                    }
+                                },
+                                {
+                                    extend: 'excelHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6, 7,8]
+                                    }
+                                }
+                            ]
+                        }
+                    );
+
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function fncancel() {
+        $('#txtSName').val('');
+        $('#txtEmailId').val('');
+        $('#txtContactNumber').val('');
+        $('#txtLocation').val('');
+        $('#txtEPersonContact').val('');
+        GlobalId = 0;
+        $('#btnCreate').text('Save');
+        $('#txtECName').val('');
+        $('#txtECNumber').val('');
+    }
+    function Delete(Id) {
+        var r = confirm("Are you Sure You want to delete it");
+        if (r == true) {
+             $.ajax({
+            url: '@Url.Action("Delete_ServiceProviderMaster", "Master")',
+            data: "Id=" + Id,
+            type: "POST",
+            success: function (resp) {
+                LoadData();
+            }
+        });
+        } else {
+        }
+
+    }
+</script>
+
+
+
+

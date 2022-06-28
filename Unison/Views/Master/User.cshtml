@@ -1,0 +1,292 @@
+﻿
+@{
+    ViewBag.Title = "User";
+}
+
+<!-- Form Element area Start-->
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list">
+                    @*<div class="basic-tb-hd">
+                            <h2>Input Text</h2>
+                            <p>Text Inputs with different sizes by height and column.</p>
+                        </div>*@
+                    <div class="cmp-tb-hd bcs-hd">
+                        <h2>User</h2>
+                        <p>Create User</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-support"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="User Name" id="txtUserName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-mail"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Email Address" id="txtEmailId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-phone"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Contact Number" id="txtContactNumber">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    Role
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlRole">
+                                        <option value="-1">Select Role</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="User">User</option>
+                                        <option value="UserView">User View</option> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <button class="btn btn-primary notika-btn-primary" id="btnCreate" onclick="fnSave();">Save</button>
+                            <button class="btn notika-btn-bluegray btn-reco-mg btn-button-mg" onclick="fnCancel();">Cancel</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>List Of Users</h2>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-striped"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link href="~/Content/TEST/datatables.css" rel="stylesheet" />
+<script src="~/Content/TEST/datatables.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+    //Global Variables
+    var GlobalId = 0;
+    //Global Variables
+    $(document).ready(function ()
+    {
+        LoadData();
+    });
+    //Document Ready Closed
+    function fnEdit(Id) {
+        debugger;
+        var obj = Id;// JSON.parse(Id);
+        $('#txtUserName').val(obj.User_Name);
+        $('#txtEmailId').val(obj.User_Email_Id);
+        $('#txtContactNumber').val(obj.Contact_Number);
+        $('#ddlRole').val(obj.Role);
+
+
+
+        GlobalId = obj.User_Id;
+        Is_Edit = true;
+        $('#btnCreate').text('Update')
+    }
+    function fnSave()
+    {
+        var UserName = $.trim($('#txtUserName').val());
+        var EmailId = $.trim($('#txtEmailId').val());
+        var ContactNumber = $.trim($('#txtContactNumber').val());
+        var Role = $.trim($('#ddlRole option:selected').val());
+
+
+        if (UserName == "") {
+            ALERT('Please Enter the User Name');
+            return false;
+        }
+        if (EmailId == "") {
+            ALERT('Please Enter the Email Id');
+            return false;
+        }
+        if (ContactNumber == "") {
+            ALERT('Please Enter the Contact Number');
+            return false;
+        }
+        if (Role == "-1") {
+            ALERT('Please Select Role');
+            return false;
+        }
+
+        $.ajax({
+            url: '@Url.Action("Save_User_Master", "Master")',
+            data: "UserName=" + UserName + "&EmailId=" + EmailId + "&ContactNumber=" + ContactNumber + "&Role=" + Role + "&Id=" + GlobalId,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    if (resp.split(':')[0] == "SUCCESS") {
+                        if (GlobalId == 0) {
+                            ALERT("Saved Successfuly.");
+                        }
+                        else {
+                            ALERT("Updated Successfuly.");
+                        }
+                        //$('#txtUserName').val('');
+                        //$('#txtEmailId').val('');
+                        //$('#txtContactNumber').val('');
+                        //$('#ddlRole').val('-1');
+                        //GlobalId = 0;
+                        //$('#btnCreate').text('Save');
+                        fncancel();
+                        LoadData();
+                    } else {
+                        ALERT("Error");
+                    }
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+
+    }
+    function LoadData() {
+        $.ajax({
+            url: '@Url.Action("Load_User_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>User Name</th>";
+                    str += "<th>Email Id</th>";
+                    str += "<th>Role</th>";
+                    str += "<th>Contact Number</th>";
+                    str += "<th>Is Active</th>";
+                    str += "<th>Created By</th>";
+                    str += "<th>Created date</th>";
+                    str += "<th>Action</th>";
+                    str += "<th>Delete</th>";
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        str += "<td>" + resp[l].User_Name + "</td>";
+                        str += "<td>" + resp[l].User_Email_Id + "</td>";
+                        str += "<td>" + resp[l].Role + "</td>";
+                        str += "<td>" + resp[l].Contact_Number + "</td>";
+                        if (resp[l].Is_Active = 1) {
+                            str += "<td>Yes</td>";
+                        } else {
+                            str += "<td>No</td>";
+                        }
+
+                        str += "<td>" + resp[l].Created_By + "</td>";
+                        str += "<td>" + resp[l].Created_Date + "</td>";
+                        var ac = JSON.stringify(resp[l]);
+                        str += "<td><a href='#' onclick=fnEdit(" + ac.replace(/\ /g, "&nbsp;") + ");>Edit</a></td>";
+                        str += "<td><a href='#' onclick=Delete(" + resp[l].User_Id + ");>Delete</a></td>";
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblData').empty();
+                    $('#tblData').append(str);
+                    $('#tblData').DataTable().destroy();
+                    $('#tblData').DataTable(
+                        {
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'copyHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6]
+                                    }
+                                },
+                                {
+                                    extend: 'excelHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6]
+                                    }
+                                }
+                            ]
+                        }
+                    );
+
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function fncancel() {
+        $('#txtUserName').val('');
+        $('#txtEmailId').val('');
+        $('#txtContactNumber').val('');
+        $('#ddlRole').val('-1');
+        GlobalId = 0;
+        $('#btnCreate').text('Save');
+    }
+    function Delete(Id) {
+        var r = confirm("Are you Sure You want to delete it");
+        if (r == true) {
+            $.ajax({
+            url: '@Url.Action("Delete_UserMaster", "Master")',
+            data: "Id=" + Id,
+            type: "POST",
+            success: function (resp) {
+                LoadData();
+            }
+        });
+        } else {
+        }
+
+    }
+</script>
+
+
+

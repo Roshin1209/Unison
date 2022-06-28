@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="login-content">
+    <div class="" style="margin-top:-31%">
+        <img src="http://www.unisonuae.com/wp-content/uploads/2016/12/logo-1.jpg" alt="" style="width:30%;border-radius: 20px 3px;"  />
+    </div>
+    <!-- Login -->
+    <div class="nk-block toggled" id="l-login">
+        <div class="nk-form">
+            <div class="input-group">
+                <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
+                <div class="nk-int-st">
+                    <input type="text" class="form-control" placeholder="Username" id="txtUserName">
+                </div>
+            </div>
+            <div class="input-group mg-t-15">
+                <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-edit"></i></span>
+                <div class="nk-int-st">
+                    <input type="password" class="form-control" placeholder="Password" id="txtPassword">
+                </div>
+            </div>
+            <div class="fm-checkbox">
+                @*<label><input type="checkbox" class="i-checks"> <i></i> Keep me signed in</label>*@
+            </div>
+            <a href="#" class="btn btn-login btn-success btn-float" onclick="fnLogin()"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></a>
+        </div>
+        <div class="nk-navigation nk-lg-ic">
+            @*<a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-register"><i class="notika-icon notika-plus-symbol"></i> <span>Register</span></a>*@
+            @*<a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>*@
+        </div>
+    </div>
+    <!-- Register -->
+    <div class="nk-block" id="l-register">
+        <div class="nk-form">
+            <div class="input-group">
+                <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
+                <div class="nk-int-st">
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+            </div>
+            <div class="input-group mg-t-15">
+                <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
+                <div class="nk-int-st">
+                    <input type="text" class="form-control" placeholder="Email Address">
+                </div>
+            </div>
+            <div class="input-group mg-t-15">
+                <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-edit"></i></span>
+                <div class="nk-int-st">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+            </div>
+            <a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow"></i></a>
+        </div>
+        <div class="nk-navigation rg-ic-stl">
+            <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span>Sign in</span></a>
+            <a href="" data-ma-action="nk-login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>
+        </div>
+    </div>
+    <!-- Forgot Password -->
+    <div class="nk-block" id="l-forget-password">
+        <div class="nk-form">
+            <p class="text-left">Input your Username you use to login to the account, and click Submit. An email will be sent to that email address with a link to reset your password</p>
+            <div class="input-group">
+                <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
+                <div class="nk-int-st">
+                    <input type="text" class="form-control" placeholder="Email Address" id="txtEmailId">
+                </div>
+            </div>
+            <a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow"></i></a>
+        </div>
+        <div class="nk-navigation nk-lg-ic rg-ic-stl">
+            <a href="" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span>Sign in</span></a>
+            @*<a href="" data-ma-action="nk-login-switch" data-ma-block="#l-register"><i class="notika-icon notika-plus-symbol"></i> <span>Register</span></a>*@
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    $(document).keypress(function (event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            fnLogin();
+        }
+    });
+    function fnLogin() {
+        var UserName = $.trim($('#txtUserName').val());
+        var Password = $.trim($('#txtPassword').val());
+        if(UserName == ""){
+            ALERT("Please Enter the User Name");
+            return false;
+        }
+        if (Password == ""){
+            ALERT("Please Enter the Password");
+            return false;
+        }
+        $.ajax({
+            url: '@Url.Action("Login", "Home")',
+            data: "UserName=" + UserName + "&Password=" + Password,
+            type: "POST",
+            success: function (resp) {
+                console.log('Logged In');
+                if (resp != "") {
+                     var Cont = resp.split('/')[0];
+                        var ACT = resp.split('/')[1];
+                        var link = '@Url.Action("Action", "Controller")';
+                        link = link.replace("Action", ACT);
+                        link = link.replace("Controller", Cont);
+                        window.location = link;
+                } else {
+                        ALERT("Invalid User Name & Password");
+                        $('#txtUserName').val('');
+                        $('#txtPassword').val('');
+                }
+            }
+        });
+    }
+  
+</script>

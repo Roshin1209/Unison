@@ -1,0 +1,1037 @@
+﻿
+@{
+    ViewBag.Title = "AssetMgmt";
+}
+
+<!-- Form Element area Start-->
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list mg-t-30" id="assetcreate">
+                    <div class="cmp-tb-hd">
+                        <h2>Asset Creation</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Manufacturer</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-support"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlManufacturer">
+                                        <option value="-1">Select</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Service Provider</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-support"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlServiceProvider">
+                                        <option value="-1">Select</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Asset name</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Asset name" id="txtAssetName">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Asset Description</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Asset Description" id="txtAssetDescription">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Serial number</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Serial number" id="txtSerialNumber">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Installation Date</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="date" class="form-control" data-mask="99/99/9999" placeholder="dd/mm/yyyy" id="dtInstallationDate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 2%">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>System ID</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" data-mask="9999" placeholder="System Id" id="txtSystemId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Last PM Date</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="date" class="form-control" data-mask="999.999.999.9999" placeholder="dd/mm/yyyy" id="dtLastPMDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>PM specs </h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" data-mask="999 999 999 9999" placeholder="PM Specs" id="txtPMSpecs">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-bottom: 2%">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Service Contract Date</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="date" class="form-control" data-mask="999.999.999.9999" placeholder="dd/mm/yyyy" id="dtServiceContraactDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Service Contract End Date</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="date" class="form-control" data-mask="999.999.999.9999" placeholder="dd/mm/yyyy" id="dtServiceContraactENDDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2> Hospital name</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlHospital">
+                                        <option value="-1">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 2%">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Contract type</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlContractType">
+                                        <option value="-1">Select</option>
+                                        <option value="Comprehensive">Comprehensive</option>
+                                        <option value="Comprehensive Plus">Comprehensive Plus</option>
+                                        <option value="In House">In House</option>
+                                        <option value="Labor Only">Labor Only</option>
+                                        <option value="PM Only">PM Only</option>
+                                        <option value="Warranty">Warranty</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Next PM Date</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="date" class="form-control" data-mask="999.999.999.9999" placeholder="dd/mm/yyyy" id="dtNextPMDate" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>AE TITLE</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" id="txtAETITLE" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-bottom: 2%">
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>IP Address</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" id="txtIPAddress" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>PORT</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" id="txtPORT" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>DMWL</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlDMWL">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Dicom send</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlDicom">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>System Location</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" id="txtSysLocation" class="form-control" placeholder="System Location" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>System Comments</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <textarea id="txtASysComments" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Category</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlcategory">
+                                        <option value="-1">Select</option>
+                                        <option value="IT">IT</option>
+                                        <option value="Biomedical">Biomedical</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Attachment</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="file" id="fileInput" multiple />
+                                    <a href="#" id="clsdFileView">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:2%">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="margin-top:35px;">
+                            <button class="btn btn-primary notika-btn-primary" ID="btnCreate" onclick="fnSave();">Save</button>
+                            <button class="btn notika-btn-bluegray btn-reco-mg btn-button-mg" onclick="fncancel();">Cancel</button>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>List Of Assets</h2>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-striped"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Form Element area End-->
+<!-- The Modal -->
+<!-- Model Attachments-->
+<div class="modal fade" id="Md_Attach">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Attachments</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table id="tblAttach" class="table table-striped"></table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--MODEL ATTACH END-->
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link href="~/Content/TEST/datatables.css" rel="stylesheet" />
+<script src="~/Content/TEST/datatables.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+    //Global Variables
+    var GlobalId = 0;
+    //Global Variables
+     var Role = @Html.Raw(Json.Encode(@Session["Role"]));
+    $(document).ready(function ()
+    {
+        if (Role != 'Admin' && Role != 'User') {
+            $('#assetcreate').hide();
+        }
+
+        LoadData();
+        LoadService_Provider();
+        Load_Manufacturere();
+        Load_Hospital();
+
+        $('#clsdFileView').hide();
+
+    });
+    $('#dtLastPMDate')[0].valueAsDate = new Date();
+    $('#dtLastPMDate').change(function () {
+        var PMSpecs = $.trim($('#txtPMSpecs').val());
+        if (PMSpecs == "") {
+            PMSpecs =0;
+        } else {
+            PMSpecs = parseInt( $.trim($('#txtPMSpecs').val()));
+        }
+        var date = this.valueAsDate;;
+        if (PMSpecs != 0) {
+            date.setMonth(date.getMonth() + parseInt(PMSpecs));
+        }
+        $('#dtNextPMDate')[0].valueAsDate = date;
+    });
+    $("#txtPMSpecs").change(function () {
+        var element = document.getElementById('dtLastPMDate');
+        var event = new Event('change');
+        element.dispatchEvent(event);
+    });
+    $("#txtPMSpecs").on("input", function (evt) {
+        var self = $(this);
+        self.val(self.val().replace(/[^\d].+/, ""));
+        if ((evt.which < 48 || evt.which > 57)) {
+            evt.preventDefault();
+        }
+    });
+    $("#txtPORT").on("input", function (evt) {
+        var self = $(this);
+        self.val(self.val().replace(/[^\d].+/, ""));
+        if ((evt.which < 48 || evt.which > 57)) {
+            evt.preventDefault();
+        }
+    });
+    //Document Ready Closed
+    function fnEdit(Id) {
+        debugger;
+        var obj = Id;// JSON.parse(Id);
+        $('#ddlManufacturer').val(obj.Maufacturer);
+        $('#ddlServiceProvider').val(obj.serviceProvider);
+        $('#txtAssetName').val(obj.Asset_Name);
+        $('#txtAssetDescription').val(obj.Asset_Description);
+        $('#txtSerialNumber').val(obj.SerialNumber);
+        $('#txtSystemId').val(obj.SystemId);
+        $('#txtPMSpecs').val(obj.PMSpecs);
+        $('#ddlHospital').val(obj.Hospital_Id);
+        $('#clsdFileView').attr('onclick', "fnloadattach('" + obj.Asset_Id + "');");
+        $('#clsdFileView').show();
+        //$('#ddlContractType').val(obj.ContractType);
+        //$("#ddlContractType option[value='" + obj.ContractType + "']").attr("selected", true);
+        var Ct = obj.ContractType;
+        if (Ct == null) {
+            $("select#ddlContractType").prop('selectedIndex', 0);
+        }
+        else if (Ct == "") {
+            $("select#ddlContractType").prop('selectedIndex', 0);
+        }
+        else if (Ct == "Comprehensive") {
+            $("select#ddlContractType").prop('selectedIndex', 1);
+        }
+        else if (Ct.replace(/\s+/g, '_') == "Comprehensive_Plus") {
+            $("select#ddlContractType").prop('selectedIndex', 2);
+        }
+        else if (Ct.replace(/\s+/g, '_') == "In_House") {
+            $("select#ddlContractType").prop('selectedIndex', 3);
+        }
+        else if (Ct.replace(/\s+/g, '_') == "Labor_Only") {
+            $("select#ddlContractType").prop('selectedIndex', 4);
+        }
+        else if (Ct == "PM Only") {
+            $("select#ddlContractType").prop('selectedIndex', 5);
+        }
+        else if (Ct == "Warranty") {
+            $("select#ddlContractType").prop('selectedIndex', 6);
+        }
+        else {
+            $("select#ddlContractType").prop('selectedIndex', 0);
+        }
+
+
+
+        var Cat = obj.Category;
+        if (Cat == null) {
+            $("select#ddlcategory").prop('selectedIndex', 0);
+        }
+        else if (Cat == "") {
+            $("select#ddlcategory").prop('selectedIndex', 0);
+        }
+        else if (Cat == "IT") {
+            $("select#ddlcategory").prop('selectedIndex', 1);
+        }
+        else if (Cat == "Biomedical") {
+            $("select#ddlcategory").prop('selectedIndex', 2);
+        }
+        else {
+            $("select#ddlcategory").prop('selectedIndex', 0);
+        }
+
+
+
+
+        if (obj.NextPMDate != null) {
+            $('#dtNextPMDate').val(obj.NextPMDate.toString("yyyy-MM-dd"));
+        }
+        if (obj.ServiceContraactEndDate != null) {
+            $('#dtServiceContraactENDDate').val(obj.ServiceContraactEndDate.toString("yyyy-MM-dd"));
+        }
+        if (obj.InstallationDate != null) {
+            $('#dtInstallationDate').val(obj.InstallationDate.toString("yyyy-MM-dd"));
+        }
+        if (obj.LastPMDate != null) {
+            $('#dtLastPMDate').val(obj.LastPMDate.toString("yyyy-MM-dd"));
+        }
+        if (obj.ServiceContraactDate != null) {
+            $('#dtServiceContraactDate').val(obj.ServiceContraactDate.toString("yyyy-MM-dd"));
+        }
+        $('#txtAETITLE').val(obj.AE_TITLE);
+        $('#txtIPAddress').val(obj.IP_ADDRESS);
+        $('#txtPORT').val(obj.PORT);
+        if (obj.DMWL == true) {
+            $('#ddlDMWL').val(1);
+        } else {
+            $('#ddlDMWL').val(0);
+        }
+        if (obj.Dicom_send == true) {
+            $('#ddlDicom').val(1);
+        } else {
+            $('#ddlDicom').val(0);
+        }
+
+        $('#txtSysLocation').val(obj.System_Location);
+        $('#txtASysComments').val(obj.System_Comments);
+
+        GlobalId = obj.Asset_Id;
+        Is_Edit = true;
+        $('#btnCreate').text('Update');
+    }
+    function fnloadattach(id) {
+        debugger
+         $.ajax({
+            url: '@Url.Action("LoadAssetAttachments", "Master")',
+             data: "Asset_Id=" + id,
+            type: "POST",
+             success: function (resp) {
+                 debugger
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>File Name</th>";
+                    str += "<th>Date Time</th>";
+                    str += "<th>View</th>";
+                    if (Role == "Admin") {
+                        str += "<th>Delete</th>";
+                    }
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        /*str += "<td>" + resp[l].File_Name + ".pdf" + "</td>";*/
+                        str += "<td>" + resp[l].File_Name + "</td>";
+                        str += "<td>" + resp[l].Created_Date + "</td>";
+                        str += '<td><a href="#" onclick="viewattach(\'' + resp[l].File_Name + '\', \'' + resp[l].Asset_Id + '\', \'' + resp[l].File_Ext + '\');">Preview</a></td>';
+                        if (Role == "Admin") {
+                            str += '<td><a href="#" onclick="fnDeleteFile(\'' + resp[l].Id + '\');">Delete</a></td>';
+                        }
+
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblAttach').empty();
+                    $('#tblAttach').append(str);
+                    //$('#tblAttach').DataTable().destroy();
+                    $('#tblAttach').DataTable();
+                    $('#Md_Attach').modal('show');
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function viewattach(Filename, AssetId, Exten) {
+        debugger;
+        var cur_HUri = location.href.split('Master')[0];
+        // Filename = Filename + ".pdf";
+        var ac = cur_HUri + "/content/AssetUpload/" + AssetId + "/" + Filename + "." + Exten;
+        console.log(ac);
+        window.open(ac, "_blank");
+
+    }
+    function fnDeleteFile(Id) {
+        debugger
+         var r = confirm("Are you Sure You want to delete this file it");
+        if (r == true) {
+              $.ajax({
+                 url: '@Url.Action("DeleteAssetFile", "Master")',
+                 data: "Id=" + Id,
+                 type: "POST",
+                 async: false,
+                 success: function (resp) {
+                     if (resp != null) {
+                         console.log('Deleted');
+                         ALERT("Attachment Deleted Successfully.")
+                         $('#Md_Attach').modal('hide');
+                     }
+                 }
+         });
+        }
+
+     }
+    function fnSave()
+    {
+        debugger
+        var Maufacturer=$('#ddlManufacturer option:selected').val();
+        var serviceProvider=$('#ddlServiceProvider option:selected').val();
+        var AssetName = $.trim($('#txtAssetName').val());
+        var AssetDescription = $.trim($('#txtAssetDescription').val());
+        var SerialNumber = $.trim($('#txtSerialNumber').val());
+        var InstallationDate = $.trim($('#dtInstallationDate').val());
+        var SystemId = $.trim($('#txtSystemId').val());
+        var LastPMDate = $.trim($('#dtLastPMDate').val());
+        var PMSpecs = $.trim($('#txtPMSpecs').val());
+        var ServiceContraactDate = $.trim($('#dtServiceContraactDate').val());
+
+        var NextPMDate = $.trim($('#dtNextPMDate').val());
+        var ServiceContraactEndDate = $.trim($('#dtServiceContraactENDDate').val());
+        var Hospital_Id = $.trim($('#ddlHospital').val());
+        var ContractType = $.trim($('#ddlContractType').val());
+
+        var AE_TITLE = $.trim($('#txtAETITLE').val());
+        var IP_Address = $.trim($('#txtIPAddress').val());
+        var PORT = $.trim($('#txtPORT').val());
+        var DWML = $.trim($('#ddlDMWL').val());
+        var DICOM = $.trim($('#ddlDicom').val());
+        var SysLoc = $.trim($('#txtSysLocation').val());
+        var SysComments = $.trim($('#txtASysComments').val());
+        var Category = $('#ddlcategory option:selected').val();
+
+        if (PORT == "") {
+            PORT = 0;
+        }
+        if (Maufacturer == "-1") {
+            ALERT('Please Select the Manufacturer');
+            return false;
+        }
+        if (serviceProvider == "-1") {
+            ALERT('Please Select the Service Provider');
+            return false;
+        }
+        if (AssetName == "") {
+            ALERT('Please Enter the Asset Name');
+            return false;
+        }
+        if (AssetDescription == "") {
+            ALERT('Please Enter the Asset Description');
+            return false;
+        }
+        if (SerialNumber == "") {
+            ALERT('Please Enter the Serial Number');
+            return false;
+        }
+        //if (SystemId == "") {
+        //    ALERT('Please Enter the System Id');
+        //    return false;
+        //}
+
+        $.ajax({
+            url: '@Url.Action("SaveAssetMaster", "Master")',
+            data: "Maufacturer=" + Maufacturer + "&serviceProvider=" + serviceProvider+"&AssetName=" + AssetName + "&AssetDescription=" + AssetDescription + "&SerialNumber=" + SerialNumber + "&InstallationDate=" + InstallationDate
+            + "&SystemId=" + SystemId + "&LastPMDate=" + LastPMDate + "&PMSpecs=" + PMSpecs + "&ServiceContraactDate=" + ServiceContraactDate + "&Id=" + GlobalId
+                + "&Hospital_Id=" + Hospital_Id + "&ContractType=" + ContractType + "&ServiceContraactEndDate=" + ServiceContraactEndDate + "&NextPMDate=" + NextPMDate
+                + "&AE_TITLE=" + AE_TITLE + "&IP_Address=" + IP_Address + "&PORT=" + PORT + "&DWML=" + DWML + "&DICOM=" + DICOM + "&SysLoc=" + SysLoc + "&SysComments=" + SysComments + "&Category=" + Category,
+            type: "POST",
+            success: function (resp) {
+                debugger
+                if (resp != null) {
+                    if (resp.split(':')[0] == "SUCCESS") {
+                        if (GlobalId == 0) {
+                            GlobalId = resp.split(':')[1]
+                            upload();
+                            ALERT("Saved Successfuly.");
+                        }
+                        else {
+                            upload();
+                            ALERT("Updated Successfuly.");
+                        }
+                        //$('#txtAssetName').val('');
+                        //$('#txtAssetDescription').val('');
+                        //$('#txtSerialNumber').val('');
+                        //$('#dtInstallationDate').val('');
+                        //$('#txtSystemId').val('');
+                        //$('#dtLastPMDate').val('');
+                        //$('#txtPMSpecs').val('');
+                        //$('#dtServiceContraactDate').val('');
+                        //GlobalId = 0;
+                        //$('#btnCreate').text('Save');
+                        fncancel();
+                        LoadData();
+                    } else {
+                        ALERT("Error");
+                    }
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+
+    }
+     function LoadData() {
+        $.ajax({
+            url: '@Url.Action("Load_Asset_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    if (Role == 'Admin' || Role == 'User') {
+                        str += "<th>Action</th>";
+                    }
+                    str += "<th>Service Code</th>";
+                    str += "<th>Hospital Name</th>";
+                    str += "<th>Manufacturer Name</th>";
+                    str += "<th>Category</th>";
+                    str += "<th>Asset Name</th>";
+                    str += "<th>Asset Description</th>";
+                    str += "<th>Serial Number</th>";
+                    str += "<th>System Id</th>";
+                    str += "<th>ServiceProvider Name</th>";
+                    str += "<th>Installation Date</th>";
+                    str += "<th>Contract Type</th>";
+                    str += "<th>Service Contract Date</th>";
+                    str += "<th>Service Contract End Date</th>";
+                    str += "<th>Last PM Date</th>";
+                    str += "<th>PM Specs</th>";
+                    str += "<th>AE TITLE</th>";
+                    str += "<th>IP Address</th>";
+                    str += "<th>PORT</th>";
+                    str += "<th>DMWL</th>";
+                    str += "<th>Dicom send</th>";
+                    str += "<th>System Location</th>";
+                    str += "<th>System Comments</th>";
+                    str += "<th>Is Active</th>";
+                    str += "<th>Created By</th>";
+                    str += "<th>Created date</th>";
+                    str += "<th>Attachements</th>";
+                    if (Role == 'Admin' || Role == 'User') {
+                      /*  str += "<th>Action</th>";*/
+                        str += "<th>Delete</th>";
+                    }
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        var ac1 = JSON.stringify(resp[l]);
+                        //console.log(ac);
+                        if (Role == 'Admin' || Role == 'User') {
+                            str += "<td><a href='#' onclick=fnEdit(" + ac1.replace(/\ /g, "&nbsp;") + ");>Edit</a></td>";
+                        }
+                        str += "<td>" + resp[l].Unison_ID + "</td>";
+                        str += "<td>" + resp[l].Hospital_Name + "</td>";
+                        str += "<td>" + resp[l].Manufacturer_Name + "</td>";
+                        str += "<td>" + resp[l].Category + "</td>";
+                        str += "<td>" + resp[l].Asset_Name + "</td>";
+                        str += "<td>" + resp[l].Asset_Description + "</td>";
+                        str += "<td>" + resp[l].SerialNumber + "</td>";
+                        str += "<td>" + resp[l].SystemId + "</td>";
+                        str += "<td>" + resp[l].ServiceProvider_Name + "</td>";
+                        str += "<td>" + resp[l].InstallationDate + "</td>";
+                        str += "<td>" + resp[l].ContractType + "</td>";
+                        str += "<td>" + resp[l].ServiceContraactDate + "</td>";
+                        str += "<td>" + resp[l].ServiceContraactEndDate + "</td>";
+                        str += "<td>" + resp[l].LastPMDate + "</td>";
+                        str += "<td>" + resp[l].PMSpecs + "</td>";
+                        str += "<td>" + resp[l].AE_TITLE + "</td>";
+                        str += "<td>" + resp[l].IP_ADDRESS + "</td>";
+                        str += "<td>" + resp[l].PORT + "</td>";
+                        if (resp[l].DMWL == true) {
+                            str += "<td>Yes</td>";
+                        } else {
+                            str += "<td>No</td>";
+                        }
+                        if (resp[l].Dicom_send == true) {
+                            str += "<td>Yes</td>";
+                        } else {
+                            str += "<td>No</td>";
+                        }
+                        if (resp[l].System_Location == null)
+                        {
+                            str += "<td></td>";
+                        } else
+                        {
+                            str += "<td>" + resp[l].System_Location + "</td>";
+                        }
+                        if (resp[l].System_Comments == null) {
+                            str += "<td></td>";
+                        } else {
+                            str += "<td>" + resp[l].System_Comments + "</td>";
+                        }
+
+                        if (resp[l].Is_Active = 1) {
+                            str += "<td>Yes</td>";
+                        } else {
+                            str += "<td>No</td>";
+                        }
+                        str += "<td>" + resp[l].Created_By + "</td>";
+                        str += "<td>" + resp[l].Created_Date + "</td>";
+                        str += "<td><a href='#' onclick=fnloadattach(" + resp[l].Asset_Id + ");>Attachments</a></td>";
+                        var ac = JSON.stringify(resp[l]);
+                        //console.log(ac);
+                        if (Role == 'Admin' || Role == 'User') {
+                           /* str += "<td><a href='#' onclick=fnEdit(" + ac.replace(/\ /g, "&nbsp;") + ");>Edit</a></td>";*/
+                            str += "<td><a href='#' onclick=Delete(" + resp[l].Asset_Id + ");>Delete</a></td>";
+                        }
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblData').empty();
+                    $('#tblData').append(str);
+                    $('#tblData').DataTable().destroy();
+                    $('#tblData').DataTable(
+                        {
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'copyHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+                                    }
+                                },
+                                {
+                                    extend: 'excelHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+                                    }
+                                }
+                            ]
+                        }
+                    );
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+
+    function upload() {
+        debugger;
+        var files = $("#fileInput").get(0).files;
+        var fileData = new FormData();
+        for (var i = 0; i < files.length; i++) {
+            fileData.append("fileInput", files[i]);
+        }
+        fileData.append("ID", GlobalId);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("UploadAsset", "Master")',
+            dataType: "json",
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            //data: JSON.stringify({ ID: GlobalId, inputFile: fileData }),
+            data: fileData  ,
+            success: function (result, status, xhr) {
+                //ALERT(result);
+            },
+            error: function (xhr, status, error) {
+                ALERT(status);
+            }
+        });
+    }
+
+
+
+    function LoadService_Provider() {
+        $.ajax({
+            url: '@Url.Action("LoadServiceProviderMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].ServiceProvider_Id + "'>" + resp[l].ServiceProvider_Name + "</option>";
+                    }
+                    $('#ddlServiceProvider').append(str);
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+     function Load_Manufacturere() {
+        $.ajax({
+            url: '@Url.Action("LoadManufacturerMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Manufacturer_Id + "'>" + resp[l].Manufacturer_Name + "</option>";
+                    }
+                    $('#ddlManufacturer').append(str);
+
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function fncancel() {
+                $('#txtAssetName').val('');
+                $('#txtAssetDescription').val('');
+                $('#txtSerialNumber').val('');
+                $('#dtInstallationDate').val('');
+                $('#txtSystemId').val('');
+                $('#dtLastPMDate').val('');
+                $('#txtPMSpecs').val('');
+                $('#dtServiceContraactDate').val('');
+
+                $('#ddlManufacturer').val('-1')
+                $('#ddlServiceProvider').val('-1')
+                $('#ddlHospital').val('-1');
+                $('#ddlContractType').val('-1');
+                $('#dtNextPMDate').val('')
+                $('#dtServiceContraactENDDate').val('');
+
+                $('#txtAETITLE').val('');
+                $('#txtIPAddress').val('');
+                $('#txtPORT').val('');
+                $('#txtSysLocation').val('');
+                $('#txtASysComments').val('');
+                $('#ddlDMWL').val('0');
+                $('#ddlDicom').val('0');
+        GlobalId = 0;
+        $('#btnCreate').text('Save');
+     }
+    function Load_Hospital() {
+        $.ajax({
+            url: '@Url.Action("LoadHospitalMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Hospital_Id + "'>" + resp[l].Hospital_Name + "</option>";
+                    }
+                    $('#ddlHospital').append(str);
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+    }
+    function Delete(Id) {
+        var r = confirm("Are you Sure You want to delete it");
+        if (r == true) {
+            $.ajax({
+            url: '@Url.Action("Delete_AssetMaster", "Master")',
+            data: "Id=" + Id,
+            type: "POST",
+            success: function (resp) {
+                LoadData();
+            }
+        });
+        } else {
+
+        }
+
+    }
+</script>

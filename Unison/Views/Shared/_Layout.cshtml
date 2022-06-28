@@ -1,0 +1,603 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title - Unison</title>
+    <!-- favicon
+       ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- Google Fonts
+        ============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- font awesome CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <!-- owl.carousel CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.css">
+    <link rel="stylesheet" href="~/Content/css/owl.transitions.css">
+    <!-- meanmenu CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/meanmenu/meanmenu.min.css">
+    <!-- animate CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+    <!-- normalize CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <!-- mCustomScrollbar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- Notika icon CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/notika-custom-icon.css">
+    <!-- wave CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/wave/waves.min.css">
+    <link rel="stylesheet" href="~/Content/css/wave/button.css">
+    <!-- Data Table JS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/jquery.dataTables.min.css">
+    <!-- main CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- style CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!-- responsive CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
+    <!-- modernizr JS
+        ============================================ -->
+    <script src="~/Content/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+
+    <!--[if lt IE 8]>
+         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+     <![endif]-->
+    <!-- Start Header Top Area -->
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                        <a href="#"><img src="http://www.unisonuae.com/wp-content/uploads/2016/12/logo-1.jpg" alt="" width="114px" style="border-radius: 20px 3px;" /></a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="header-top-menu">
+                        <ul class="nav navbar-nav notika-top-nav">
+                            <li class="nav-item dropdown">
+                                <a href="@Url.Action("ChangePassword","Home")" role="button" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-settings"></i></span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" role="button" onclick="fnLogout();" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-support"></i></span></a>
+                                <div role="menu" class="dropdown-menu search-dd animated flipInX">
+                                    <div class="search-input">
+                                        <i class="notika-icon notika-left-arrow"></i>
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Top Area -->
+    <!-- Mobile Menu start -->
+    <div class="mobile-menu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mobile-menu">
+                        <nav id="dropdown">
+                            <ul class="mobile-menu-nav">
+                                <li>
+                                    <a data-toggle="collapse" data-target="#Charts" href="#">Home</a>
+                                    <ul class="collapse dropdown-header-top">
+                                        <li>
+                                            <a href="@Url.Action("Dashboard","Home")">Dashboard</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demoevent" href="#">Masters</a>
+                                    <ul id="demoevent" class="collapse dropdown-header-top">
+                                        <li id="subMenu_HSP">
+                                            <a href="@Url.Action("HospitalList","Master")">Hospital List</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Requestor","Master")">Requestor List</a>
+                                        </li>
+                                        <li id="subMenu_Ser">
+                                            <a href="@Url.Action("ServiceProvider","Master")">Service Provider List</a>
+                                        </li>
+                                        <li id="subMenu_Manufa">
+                                            <a href="@Url.Action("Manufacturer","Master")">Manufacturer List</a>
+                                        </li>
+                                        <li id="subMenu_Assignee">
+                                            <a href="@Url.Action("Assignee","Master")">Assignee List</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#democrou" href="#">Reports</a>
+                                    <ul id="democrou" class="collapse dropdown-header-top">
+                                        <li>
+                                            <a href="@Url.Action("Index","Report")">Case Report</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("PMReport","Report")">Preventive Maintenance Report</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("lablePrint","Master")">Label Print</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demolibra" href="#">Management</a>
+                                    <ul id="demolibra" class="collapse dropdown-header-top">
+                                        <li id="subMenu_AssetMGMT">
+                                            <a href="@Url.Action("AssetMgmt","Master")">Asset Managment</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("IncidentMgmt","Master")">Incident  Managment</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demodepart" href="#">User</a>
+                                    <ul id="demodepart" class="collapse dropdown-header-top">
+                                        <li>
+                                            <a href="@Url.Action("User","Master")">User Creation</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demo" href="#">Settings</a>
+                                    <ul id="demo" class="collapse dropdown-header-top">
+                                        <li>
+                                            <a href="@Url.Action("ProblemCategory","Master")">Problem category</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("StatusMaster","Master")">Status</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("RootCauseMaster","Master")">Root Cause</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("EmailSettingMaster","Master")">Email Settings</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                              
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu end -->
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro mMenu">
+                        <li class="active" id="HomeMenu">
+                            <a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
+                        </li>
+                        <li id="MasterMenu">
+                            <a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Masters</a>
+                        </li>
+                        <li id="rpt">
+                            <a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Report</a>
+                        </li>
+                        <li id="LIMGMT">
+                            <a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Management</a>
+                        </li>
+                        <li id="UserMenu">
+                            <a data-toggle="tab" href="#Forms"><i class="notika-icon notika-form"></i> User</a>
+                        </li>
+                        <li id="SettingsMenu">
+                            <a data-toggle="tab" href="#Appviews"><i class="notika-icon notika-app"></i> Settings</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content custom-menu-content SubMenu">
+                        <div id="Home" class="tab-pane in active notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li>
+                                    <a href="@Url.Action("Dashboard","Home")">Dashboard</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li>
+                                    <a href="inbox.html">Inbox</a>
+                                </li>
+                                <li>
+                                    <a href="view-email.html">View Email</a>
+                                </li>
+                                <li>
+                                    <a href="compose-email.html">Compose Email</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="Interface" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li id="subMenu_HSP">
+                                    <a href="@Url.Action("HospitalList","Master")">Hospital List</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Requestor","Master")">Requestor List</a>
+                                </li>
+                                <li id="subMenu_Ser">
+                                    <a href="@Url.Action("ServiceProvider","Master")">Service Provider List</a>
+                                </li>
+                                <li id="subMenu_Manufa">
+                                    <a href="@Url.Action("Manufacturer","Master")">Manufacturer List</a>
+                                </li>
+                                <li id="subMenu_Assignee">
+                                    <a href="@Url.Action("Assignee","Master")">Assignee List</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li>
+                                    <a href="@Url.Action("Index","Report")">Case Report</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("PMReport","Report")">Preventive Maintenance Report</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("lablePrint","Master")">Label Print</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li id="subMenu_AssetMGMT1">
+                                    <a href="@Url.Action("AssetMgmt","Master")">Asset Managment</a>
+                                </li>
+                                <li id="subMenu_IncidentMGMT2">
+                                    <a href="@Url.Action("IncidentMgmt","Master")">Incident  Managment</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li>
+                                    <a href="@Url.Action("User","Master")">User Creation</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div id="Appviews" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li>
+                                    <a href="@Url.Action("ProblemCategory","Master")">Problem category</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("StatusMaster","Master")">Status</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("RootCauseMaster","Master")">Root Cause</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("EmailSettingMaster","Master")">Email Settings</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div id="Page" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li>
+                                    <a href="contact.html">Contact</a>
+                                </li>
+                                <li>
+                                    <a href="invoice.html">Invoice</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a href="color.html">Color</a>
+                                </li>
+                                <li>
+                                    <a href="login-register.html">Login Register</a>
+                                </li>
+                                <li>
+                                    <a href="404.html">404 Page</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Menu area End-->
+    @RenderBody()
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                        <p>
+                            Copyright © @DateTime.Now.Year
+                            . All rights reserved. Unison.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer area-->
+    <!-- The Modal -->
+    <div class="modal fade" id="Md_AlertBOX">
+        <div class="modal-dialog modal-lg" data-backdrop="static" data-keyboard="false">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Information</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" id="msg">
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery
+        ============================================ -->
+    @*<script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>*@
+    <!-- bootstrap JS
+        ============================================ -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- wow JS
+        ============================================ -->
+    <script src="~/Content/js/wow.min.js"></script>
+    <!-- price-slider JS
+        ============================================ -->
+    <script src="~/Content/js/jquery-price-slider.js"></script>
+    <!-- owl.carousel JS
+        ============================================ -->
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <!-- scrollUp JS
+        ============================================ -->
+    <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+    <!-- meanmenu JS
+        ============================================ -->
+    <script src="~/Content/js/meanmenu/jquery.meanmenu.js"></script>
+    <!-- counterup JS
+        ============================================ -->
+    <script src="~/Content/js/counterup/jquery.counterup.min.js"></script>
+    <script src="~/Content/js/counterup/waypoints.min.js"></script>
+    <script src="~/Content/js/counterup/counterup-active.js"></script>
+    <!-- mCustomScrollbar JS
+        ============================================ -->
+    <script src="~/Content/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- jvectormap JS
+        ============================================ -->
+    <script src="~/Content/js/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/Content/js/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Content/js/jvectormap/jvectormap-active.js"></script>
+    <!-- sparkline JS
+        ============================================ -->
+    <script src="~/Content/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/Content/js/sparkline/sparkline-active.js"></script>
+    <!-- sparkline JS
+        ============================================ -->
+    <script src="~/Content/js/flot/jquery.flot.js"></script>
+    <script src="~/Content/js/flot/jquery.flot.resize.js"></script>
+    <script src="~/Content/js/flot/curvedLines.js"></script>
+    <script src="~/Content/js/flot/flot-active.js"></script>
+    <!-- knob JS
+        ============================================ -->
+    <script src="~/Content/js/knob/jquery.knob.js"></script>
+    <script src="~/Content/js/knob/jquery.appear.js"></script>
+    <script src="~/Content/js/knob/knob-active.js"></script>
+    <!--  wave JS
+        ============================================ -->
+    <script src="~/Content/js/wave/waves.min.js"></script>
+    <script src="~/Content/js/wave/wave-active.js"></script>
+    <!--  todo JS
+        ============================================ -->
+    <script src="~/Content/js/todo/jquery.todo.js"></script>
+    <!-- plugins JS
+        ============================================ -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!--  Chat JS
+        ============================================ -->
+    <script src="~/Content/js/chat/moment.min.js"></script>
+    <script src="~/Content/js/chat/jquery.chat.js"></script>
+    <!--============================================ -->
+     <script src="~/Content/js/charts/Chart.js"></script> 
+     <script src="~/Content/js/charts/bar-chart.js"></script> 
+    <!-- Data Table JS
+        ============================================ -->
+    @*<script src="~/Content/js/data-table/jquery.dataTables.min.js"></script>
+        <script src="~/Content/js/data-table/data-table-act.js"></script>*@
+
+
+
+
+
+
+    <!-- main JS
+        ============================================ -->
+    <script src="~/Content/js/main.js"></script>
+
+    <script>
+        debugger
+         var Role = @Html.Raw(Json.Encode(@Session["Role"]));
+        $(document).ready(function () {
+
+            if (Role != "Admin") {
+                $('#HomeMenu').hide();
+                $('#rpt').hide();
+                $('#UserMenu').hide();
+                $('#SettingsMenu').hide();
+                $('#subMenu_AssetMGMT').hide();
+                $('#subMenu_HSP').hide();
+                $('#subMenu_Ser').hide();
+                $('#subMenu_Manufa').hide();
+                $('#subMenu_Assignee').hide();
+            }
+            if (Role != "Admin" && Role != "User") {
+                $('#subMenu_IncidentMGMT2').hide();
+                $('#MasterMenu').hide();
+            }
+           
+        });
+        function fnLogout() {
+            location.href='@Url.Action("Index","Home")'
+        }
+        function ALERT(MSG) {
+            $('#msg').html(MSG);
+            $('#Md_AlertBOX').modal('show');
+        }
+        $(function () {
+            setNavigation1();
+        });
+        function setNavigation() {
+            debugger;
+            var path = window.location.pathname;
+            path = path.replace(/\/$/, "");
+            path = decodeURIComponent(path);
+
+
+            $('.mMenu').each(function () {
+                var href = $(this).attr('href');
+                if (path.substring(0, href.length) === href) {
+                    $(this).closest('a').addClass('active');
+                    $(this).closest('ul').addClass('in');
+                    $(this).css("baground-color", "#eee");
+                }
+            });
+        }
+        function setNavigation1() {
+            debugger;
+            var path = window.location.pathname;
+            path = path.replace(/\/$/, "");
+            path = decodeURIComponent(path);
+
+            var view = path.split('/')[1];
+            var cont = path.split('/')[0];
+
+            if (path.indexOf('/Home') !=-1) {
+                cont = "Home";
+            } else if (path.indexOf('/Report') !=-1) {
+                cont = "Report";
+            } else {
+                cont = "Master";
+            }
+
+            $('.mMenu').find('li').removeClass('active');
+            $('.SubMenu').find('div').removeClass('active');
+                if (cont == "Report") {
+                    $('#rpt').addClass('active');
+                    $('#Charts').addClass('active');
+                }
+                if (cont == "Home") {
+                    $('#Home').addClass('active');
+                    $('#HomeMenu').addClass('active');
+                }
+
+                if (path.indexOf("/lablePrint") != -1) {
+                    $('#rpt').addClass('active');
+                    $('#Charts').addClass('active');
+                }
+            //Managment
+                if (path.indexOf("/AssetMgmt")!=-1) {
+                    $('#LIMGMT').addClass('active');
+                    $('#Tables').addClass('active');
+                }
+                if (path.indexOf("/IncidentMgmt") != -1) {
+                    $('#LIMGMT').addClass('active');
+                    $('#Tables').addClass('active');
+                }
+
+
+
+                if (path.indexOf("/Manufacturer") != -1) {
+                    $('#Interface').addClass('active');
+                    $('#MasterMenu').addClass('active');
+                }
+                if (path.indexOf("/Requestor") != -1) {
+                    $('#Interface').addClass('active');
+                    $('#MasterMenu').addClass('active');
+                }
+                if (path.indexOf("/ServiceProvider") != -1) {
+                    $('#Interface').addClass('active');
+                    $('#MasterMenu').addClass('active');
+                }
+
+                if (path.indexOf("/HospitalList") != -1) {
+                    $('#Interface').addClass('active');
+                    $('#MasterMenu').addClass('active');
+                }
+                if (path.indexOf("/Assignee") != -1) {
+                    $('#Interface').addClass('active');
+                    $('#MasterMenu').addClass('active');
+                }
+            //Settings
+                if (path.indexOf("/ProblemCategory") != -1) {
+                    $('#SettingsMenu').addClass('active');
+                    $('#Appviews').addClass('active');
+                }
+                if (path.indexOf("/StatusMaster") != -1) {
+                    $('#SettingsMenu').addClass('active');
+                    $('#Appviews').addClass('active');
+                }
+                if (path.indexOf("/RootCauseMaster") != -1) {
+                    $('#SettingsMenu').addClass('active');
+                    $('#Appviews').addClass('active');
+                }
+                if (path.indexOf("/EmailSettingMaster") != -1) {
+                    $('#SettingsMenu').addClass('active');
+                    $('#Appviews').addClass('active');
+                }
+            //Setting Menu Done.
+
+               //User Menu
+                if (path.indexOf("User") != -1) {
+                    $('#UserMenu').addClass('active');
+                    $('#Forms').addClass('active');
+                }
+
+
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,680 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="notika-status-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30" style="background:#337ab7;">
+                    <div class="website-traffic-ctn">
+                        <h2><span id="statusOpen" style="color:#f7f1f1;">0</span></h2>
+                        <p style="color:#f7f1f1;">Open cases</p>
+                    </div>
+                    <div class="sparkline-bar-stats1">9,4,8,6,5,6,4,8,3,5,9,5</div>
+                </div>
+            </div>
+            @*<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                        <div class="website-traffic-ctn">
+                            <h2><span  id="statusClosed">0</span></h2>
+                            <p>Closed cases</p>
+                        </div>
+                        <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>
+                    </div>
+                </div>*@
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30" style="background:#5cb85c">
+                    <div class="website-traffic-ctn">
+                        <h2><span id="statusFollowup" style="color:#f7f1f1;">0</span></h2>
+                        <p style="color:#f7f1f1;">Closed cases</p>
+                    </div>
+                    <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30" style="background:#f0ad4e">
+                    <div class="website-traffic-ctn">
+                        <h2><span id="statusPending" style="color:#f7f1f1;">0</span></h2>
+                        <p style="color:#f7f1f1;">Pending cases</p>
+                    </div>
+                    <div class="sparkline-bar-stats3">4,2,8,2,5,6,3,8,3,5,9,5</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30" style="background:#d9534f">
+                    <div class="website-traffic-ctn">
+                        <h2><span id="statusTotal" style="color:#f7f1f1;">0</span></h2>
+                        <p style="color:#f7f1f1;">Today Support Tickets</p>
+                    </div>
+                    <div class="sparkline-bar-stats4">2,4,8,4,5,7,4,7,3,5,7,5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Status area-->
+<!-- Start Sale Statistic area-->
+<div class="sale-statistic-area">
+    <div class="container">
+        <div class="row" style="display:none;">
+            <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                    <div class="curved-inner-pro">
+                        <div class="curved-ctn">
+                            <h2>Requestor Status</h2>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="bar-chart-wp">
+                        <canvas id="barchart_11"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                    <div class="past-day-statis" style="display:none" ">
+                        <h2>Today</h2>
+                        <p>Requestor Status</p>
+                    </div>
+                    <div id="reqDB1" style="display:none"></div>
+                    <div class="ongoing-task-inner notika-shadow mg-t-30">
+                        <div class="realtime-ctn">
+                            <div class="realtime-title ongoing-hd-wd">
+                                @*<h2>Today</h2>*@
+                                <h2>Hospital Status</h2>
+                            </div>
+                        </div>
+                        <div class="skill-content-3 ongoing-tsk">
+                            <div class="skill" id="HSPNEWG1">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                    <div class="curved-inner-pro">
+                        <div class="curved-ctn">
+                            <h2>Manufacturor Status</h2>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="bar-chart-wp">
+                        <canvas id="barchart_2"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                    <div class="past-day-statis" style="display:none">
+                        @*<h2>Today</h2>*@
+                        <p>Manufacturor Status</p>
+                    </div>
+                    <div id="reqManufacturor" style="display:none"></div>
+                    <div class="ongoing-task-inner notika-shadow mg-t-30">
+                        <div class="realtime-ctn">
+                            <div class="realtime-title ongoing-hd-wd">
+                                @*<h2>Today</h2>*@
+                                <h2>Category Status</h2>
+                            </div>
+                        </div>
+                        <div class="skill-content-3 ongoing-tsk">
+                            <div class="skill" id="CATNEWG">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12" style="display:none;">
+                <div class="statistic-right-area notika-shadow mg-tb-30 sm-res-mg-t-0">
+                    <div class="past-day-statis">
+                        @*<h2>Today</h2>*@
+                        <p>Hospital Status</p>
+                    </div>
+                    <div></div>
+                    <div class="sparkline-bar-stats2" id="reqHospital">1,4,8,3,5,6,4,8,3,3,9,5</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-7 col-xs-12">
+                <div class="sale-statistic-inner notika-shadow mg-tb-30" id="dvSummary">
+                    <div class="curved-inner-pro">
+                        <div class="curved-ctn">
+                            <h2>
+                                Summary
+                            </h2>
+                            <div style="width:300px;overflow: hidden;">
+                                <div style="width: 150px;float:left;">
+                                    <select id="ddlSumary" class="form-control">
+                                        <option value="TODAY">Today</option>
+                                        <option value="WEEK">This Week</option>
+                                        <option value="MONTH">This Month</option>
+                                    </select>
+                                </div>
+                                <div style="overflow: hidden;padding-left:10%">
+                                    <select id="ddlStatusType" class="form-control">
+                                        <option value="HSP">Hospital</option>
+                                        <option value="CAT">Category</option>
+                                        <option value="REQ">Requestor</option>
+                                        <option value="MAN">Manufacturer</option>
+                                        <option value="ASS">Assignee</option>
+                                        <option value="PM">PM Status</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-chart-wp" id="tblData">
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-8 col-sm-7 col-xs-12">
+                <div class="sale-statistic-inner notika-shadow mg-tb-30">
+                    <div class="curved-inner-pro" style="height:100px;">
+                        <div class="curved-ctn">
+                            <h2>
+                                Report <span id="spnRBy"></span>
+                            </h2>
+                            <p>
+
+
+                            </p>
+
+                        </div>
+                    </div>
+
+                    @*<div class="bar-chart-wp">
+                            <canvas id="barchart_1"></canvas>
+
+                        </div>*@
+                    <div class="col-md-6">
+                        <div class="card m-b-30">
+
+                        </div>
+                    </div>
+                </div>
+                <div id="chartVendorWise" style="margin-top:-11%"></div>
+            </div>
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+    <!-- End Sale Statistic area-->
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="POP_Analytics">
+    <div class="modal-dialog modal-lg" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="lblMT">Information</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table id="tblData_PopUp" class="table table-striped"></table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="~/Content/js/chat/canvasjs.min.js"></script>
+<link href="~/Content/TEST/datatables.css" rel="stylesheet" />
+<script src="~/Content/TEST/datatables.js"></script>
+<script>
+    $(document).ready(function () {
+        //DashboardI();
+        Dashboard1();
+       // Dashboard2();
+        //LoadVendorWiseTicket();
+        //Dashboard3();
+        //Dashboard4();
+        //Dashboard5();
+        Dashboard6();
+    });
+    function DashboardI() {
+         $.ajax({
+            url: '@Url.Action("Dashboard_I", "Home")',
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    $('#statusOpen').html(resp[0].Open);
+                    //$('#statusClosed').html(resp[0].Closed);
+                    $('#statusPending').html(resp[0].Pending);
+                    $('#statusFollowup').html(resp[0].Followup);
+                }
+
+            }
+        });
+    }
+    function Dashboard1() {
+         $.ajax({
+            url: '@Url.Action("Dashboard_1", "Home")',
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    $('#statusTotal').html(resp[0].Totla_Records);
+                }
+
+            }
+        });
+    }
+    function Dashboard2() {
+        var ctx = document.getElementById("barchart_1");
+         $.ajax({
+            url: '@Url.Action("Dashboard_2", "Home")',
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+
+                    var str = "";
+                    var a = [];
+                    var b = [];
+                    var coloR = [];
+                    for (var l = 0; l < resp.length; l++) {
+                        str += ' <div class="past-statistic-an">';
+                        str += ' <div class="past-statistic-ctn">';
+                        str += ' <h3><span class="counter">' + resp[l].Totla_Records+'</span></h3>';
+                        str += ' <p>' + resp[l].RequestorName +'</p>';
+                        str += ' </div>';
+                        str += ' </div>';
+                        a.push(resp[l].Totla_Records);
+                        b.push(resp[l].RequestorName);
+                        var r = Math.floor(Math.random() * 255);
+                        var g = Math.floor(Math.random() * 255);
+                        var brc = Math.floor(Math.random() * 255);
+                        var cR = "rgb(" + r + "," + g + "," + brc + ")";
+                        coloR.push(cR);
+                    }
+                    debugger;
+                    var myBarChart = new Chart(ctx, {
+                        type: 'line',
+                        options: {
+                            scales: {
+                                xAxes: [{
+                                    ticks: {
+                                        display: false
+                                    }
+                                }]
+                            }
+                        },
+                        data: {
+                            labels: b,
+                            datasets: [{
+                                label: 'Requestor Status',
+                                data: a,
+                                //backgroundColor: coloR,
+                                //borderColor: coloR
+                                //fillColor: "rgba(151,187,205,0.5)",
+                                //strokeColor: "rgba(151,187,205,1)",
+                                //pointColor: "rgba(151,187,205,1)",
+                                //pointStrokeColor: "#fff",
+
+                            }]
+                        }
+
+                    });
+
+                    //$('#reqDB').append(str);
+
+                }
+
+            }
+        });
+    }
+    function Dashboard3() {
+        var ctx = document.getElementById("barchart_2");
+         $.ajax({
+            url: '@Url.Action("Dashboard_3", "Home")',
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+
+                    var str = "";
+                    var a = [];
+                    var b = [];
+                    var coloR = [];
+                    for (var l = 0; l < resp.length; l++) {
+                        str += ' <div class="past-statistic-an">';
+                        str += ' <div class="past-statistic-ctn">';
+                        str += ' <h3><span class="counter">' + resp[l].Totla_Records+'</span></h3>';
+                        str += ' <p>' + resp[l].Manufacturer_Name +'</p>';
+                        str += ' </div>';
+                        str += ' </div>';
+                        a.push(resp[l].Totla_Records);
+                        b.push(resp[l].Manufacturer_Name);
+                        var r = Math.floor(Math.random() * 255);
+                        var g = Math.floor(Math.random() * 255);
+                        var brc = Math.floor(Math.random() * 255);
+                        var cR = "rgb(" + r + "," + g + "," + brc + ")";
+                        coloR.push(cR);
+                    }
+                    var myBarChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: b,
+                            datasets: [{
+                                label: 'Manufacturer Status',
+                                data: a,
+                                backgroundColor: coloR,
+                                borderColor: coloR
+
+                            }]
+                        }
+
+                    });
+                    //$('#reqManufacturor').append(str);
+
+                }
+
+            }
+        });
+    }
+    function Dashboard4() {
+         $.ajax({
+            url: '@Url.Action("Dashboard_4", "Home")',
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+
+                    var str = "";
+                    var str_G = "";
+                    var values = [];
+                    var lables = [];
+                    for (var l = 0; l < 6; l++) {
+                        str += ' <div class="past-statistic-an">';
+                        str += ' <div class="past-statistic-ctn">';
+                        str += ' <h3><span class="counter">' + resp[l].Totla_Records+'</span></h3>';
+                        str += ' <p>' + resp[l].Hospital_Name +'</p>';
+                        str += ' </div>';
+                        str += ' </div>';
+                        values.push(resp[l].Totla_Records);
+                        lables.push(resp[l].Hospital_Name);
+
+                        str_G += '<div class="progress">';
+                        str_G += '<div class="lead-content">';
+                        str_G += '<p>' + resp[l].Hospital_Name +'</p>';
+                        str_G += '</div>';
+                        str_G += '<div class="progress-bar wow fadeInLeft" data-progress="' + resp[l].Totla_Records + '%" style="width: ' + resp[l].Totla_Records +'%;" data-wow-duration="1.5s" data-wow-delay="1.2s">';
+                        str_G += '<span>' + resp[l].Totla_Records +'</span>';
+                        str_G += '</div>';
+                        str_G += '</div>';
+                    }
+
+                    //$('#reqHospital').sparkline(values, {
+                    //    type: "line",
+                    //    height: '100',
+                    //    width:'100',
+                    //    barSpacing: 2,
+                    //    // Map the offset in the list of values to a name to use in the tooltip
+                    //    tooltipFormat: '{{offset:offset}} {{value}}',
+                    //    tooltipValueLookups: {
+                    //        'offset': lables
+                    //    },
+                    //});
+
+
+                    $('#HSPNEWG').empty();
+                    $('#HSPNEWG').append(str_G);
+
+                    //$('#reqHospital').append(str);
+
+                }
+
+            }
+        });
+    }
+     function Dashboard5() {
+         $.ajax({
+            url: '@Url.Action("Dashboard_5", "Home")',
+            type: "POST",
+            success: function (resp) {
+
+                if (resp != null) {
+                    var str_G = "";
+                    var str = "";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += ' <div class="past-statistic-an">';
+                        str += ' <div class="past-statistic-ctn">';
+                        str += ' <h3><span class="counter">' + resp[l].Totla_Records+'</span></h3>';
+                        str += ' <p>' + resp[l].Category_Name +'</p>';
+                        str += ' </div>';
+                        str += ' </div>';
+                        str_G += '<div class="progress">';
+                        str_G += '<div class="lead-content">';
+                        str_G += '<p>' + resp[l].Category_Name + '</p>';
+                        str_G += '</div>';
+                        str_G += '<div class="progress-bar wow fadeInLeft" data-progress="' + resp[l].Totla_Records + '%" style="width: ' + resp[l].Totla_Records + '%;" data-wow-duration="1.5s" data-wow-delay="1.2s">';
+                        str_G += '<span>' + resp[l].Totla_Records + '</span>';
+                        str_G += '</div>';
+                        str_G += '</div>';
+                    }
+                    $('#CATNEWG').append(str_G);
+                    $('#curved-line-chart').append(str);
+
+                }
+
+            }
+        });
+    }
+     function LoadVendorWiseTicket() {
+        $.ajax({
+            url: '@Url.Action("Dashboard_2", "Home")',
+            type: "POST",
+           // data: { custType: rptcustType, customerId: rptcustId },
+            async: true,
+            success: function (resp) {
+                $(function () {
+                    var graphData = [];
+
+                    for (var i = 0; i < resp.length; i++) {
+                        graphData.push({ y: resp[i].Totla_Records, label: resp[i].RequestorName })
+                    }
+                    var chart = new CanvasJS.Chart("chartVendorWise", {
+                        theme: "light2",
+                        zoomEnabled: true,
+                        animationEnabled: true,
+                        title: {
+                            text: "Vendor",
+                            fontSize: 25
+                        },
+                        data: [
+                            {
+                                type: "line",
+                                dataPoints: graphData,
+                            }
+                        ]
+                    });
+                    chart.render();
+                });
+            }
+        });
+     };
+
+    function Dashboard6() {
+        debugger
+         var DT = $('#ddlSumary').val();
+         var TYPE = $('#ddlStatusType').val();
+         $('#spnRBy').html('By ' + $('#ddlStatusType option:selected').text());
+         var tot_Open = 0;
+         var tot_Closed = 0;
+         var tot_Pending = 0;
+
+         $.ajax({
+             url: '@Url.Action("Dashboard_6","Home")',
+             data: "DT=" + DT + "&TYPE=" + TYPE,
+             type: "POST",
+             async: false,
+             success: function (resp) {
+                 debugger
+                 if (resp != null) {
+                     LoadGraph(resp);
+                     var str = "";
+                     str += '<table class="table">';
+                     str += '<thead>';
+                     str += '<tr>';
+                     str += '<th>Name</th>';
+                     str += '<th>Total</th>';
+                     str += '<th>Open</th>';
+                     str += '<th>Pending</th>';
+                     str += '<th>Closed</th>';
+                     str += '</tr>';
+                     str += '</thead>';
+                     str += '<tbody>';
+                     if (resp.length == 0) {
+                         str += '<tr>';
+                         str += '<td>No Data Found</td>';
+                         str += '<tr>';
+                     } else {
+                         for (var l = 0; l < resp.length; l++) {
+                             str += '<tr>';
+                             str += '<td>' + resp[l].Name + '</td>';
+                             str += '<td>' + resp[l].Totla_Records + '</td>';
+                             str += '<td>' + resp[l].TOT_Open + '</td>';
+                             str += '<td>' + resp[l].TOT_Pending + '</td>';
+                             str += '<td>' + resp[l].TOT_Closed + '</td>';
+                             
+                             str += '</tr>';
+
+                             if (resp[l].TOT_Open != "" || resp[l].TOT_Open != null) {
+                                 tot_Open += parseInt(resp[l].TOT_Open);
+                             }
+                             if (resp[l].TOT_Closed != "" || resp[l].TOT_Closed != null) {
+                                 tot_Closed += parseInt(resp[l].TOT_Closed);
+                             }
+                             if (resp[l].TOT_Pending != "" || resp[l].TOT_Pending != null) {
+                                 tot_Pending += parseInt(resp[l].TOT_Pending);
+                             }
+                             
+                             
+                         }
+                     }
+
+                     str += '</tbody>';
+                     str += '</table>';
+                 }
+                 $('#statusOpen').html(tot_Open);
+                 //$('#statusClosed').html(resp[0].Closed);
+                 $('#statusPending').html(tot_Pending);
+                 $('#statusFollowup').html(tot_Closed);
+                 $('#tblData').empty();
+                 $('#tblData').append(str);
+                 if (resp.length != 0) {
+                     $('#tblData').append('<p><a href="#" onclick="fnPopupCounts()">View All</a></p>');
+                     $('#dvSummary').css('height','512px')
+                 }
+                 $('#tblData tr').hide();
+                 $('#tblData tr').slice(0, 6).show();
+             }
+         });
+
+     }
+     function LoadGraph(resp) {
+         $(function () {
+             var graphData = [];
+
+             for (var i = 0; i < resp.length; i++) {
+                 graphData.push({ y: resp[i].Totla_Records, label: resp[i].Name })
+             }
+             var chart = new CanvasJS.Chart("chartVendorWise", {
+                 theme: "light2",
+                 zoomEnabled: true,
+                 animationEnabled: true,
+                 axisX: {
+
+                     labelFormatter: function () {
+                         return " ";
+                     }
+                 },
+                 title: {
+                     text: $('#ddlSumary option:selected').text(),
+                     fontSize: 15
+                 },
+                 data: [
+                     {
+                         type: "line",
+                         dataPoints: graphData,
+                     }
+                 ]
+             });
+             chart.render();
+         });
+     }
+     $("#ddlSumary").change(function () {
+         Dashboard6();
+     });
+     $("#ddlStatusType").change(function () {
+         Dashboard6();
+     });
+     function fnPopupCounts() {
+           var DT = $('#ddlSumary').val();
+           var TYPE = $('#ddlStatusType').val();
+           $('#lblMT').html("Report:" + $('#ddlStatusType option:selected').text() + " for " + $('#ddlSumary option:selected').text())
+         $.ajax({
+             url: '@Url.Action("Dashboard_6","Home")',
+             data: "DT=" + DT + "&TYPE=" + TYPE,
+             type: "POST",
+             async: false,
+             success: function (resp) {
+                 if (resp != null) {
+                     LoadGraph(resp);
+                     var str = "";
+                     
+                     str += '<thead>';
+                     str += '<tr>';
+                     str += '<th>Name</th>';
+                     str += '<th>Total</th>';
+                     str += '<th>Open</th>';
+                     str += '<th>Pending</th>';
+                     str += '<th>Closed</th>';
+                     str += '</tr>';
+                     str += '</thead>';
+                     str += '<tbody>';
+                     if (resp.length == 0) {
+                         str += '<tr>';
+                         str += '<td>No Data Found</td>';
+                         str += '<tr>';
+                     } else {
+                         for (var l = 0; l < resp.length; l++) {
+                             str += '<tr>';
+                             str += '<td>' + resp[l].Name + '</td>';
+                             str += '<td>' + resp[l].Totla_Records + '</td>';
+                             str += '<td>' + resp[l].TOT_Open + '</td>';                             
+                             str += '<td>' + resp[l].TOT_Pending + '</td>';
+                             str += '<td>' + resp[l].TOT_Closed + '</td>';
+                             str += '</tr>';
+                         }
+                     }
+
+                     str += '</tbody>';
+                     
+                 }
+                 $('#tblData_PopUp').empty();
+                 $('#tblData_PopUp').append(str);
+                 $('#tblData_PopUp').DataTable().destroy();
+                 $('#tblData_PopUp').DataTable();
+                 $('#POP_Analytics').modal('show');
+             }
+         });
+     }
+</script>

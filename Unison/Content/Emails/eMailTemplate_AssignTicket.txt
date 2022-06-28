@@ -1,0 +1,28 @@
+Dear {Assignee_Name},
+Service request “{SR_Number}” has been assigned to you.  
+Asset Details:
+
+Unison Asset ID: “{Asset_ID}”
+Hospital Name: “{Hospital_Name}”
+Manufacturer:” {Manufacturer}”
+Asset Name: “{Asset_Name}”
+Asset description: “{Asset_Description}”
+Serial Number: “{Serial_Number}”
+Contract Type: ”{Contract_Type}”
+
+Request Details:
+
+Priority: {Priority}
+SR description: “{Problem description}”
+
+Contact Person: 
+
+Requestor name:{Requestor_Name}
+Phone number:{Phone_Number}
+Email address:{Email_Id}	
+Requestor ID:{Requestor_Id}
+
+Best Regards,
+UNUSON Service Center
+800UNISON (800 864 766)
+servicecenter@unisonuae.com

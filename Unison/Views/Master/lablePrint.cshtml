@@ -1,0 +1,510 @@
+﻿
+@{
+    ViewBag.Title = "lablePrint";
+}
+@*<link href="~/Content/lblPrint.css" rel="stylesheet" />*@
+<link href="~/Content/label.css" rel="stylesheet" />
+<div class="form-element-area">
+    <div class="continer" id="Sectionprint">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="margin-left:15%">
+                <div>
+                    <p>
+                        Hospital Name <select class="form-control" id="ddlHospital">
+                            <option value="-1">Select</option>
+                        </select>
+                    </p>
+                    <button class="btn btn-primary notika-btn-primary" onclick="Generate_ByHSP();">Generate</button>
+                    <button class="btn btn-primary notika-btn-primary" onclick="printDiv1();">Print</button>
+                </div>
+                <div  style="display:none">
+                    <p>Starting From <input type="text" id="FromNo" class="form-control Num" /></p>
+                    <p>Ending TO <input type="text" id="ToNo" class="form-control Num" /></p>
+                    <button class="btn btn-primary notika-btn-primary" onclick="Generate();">Generate</button>
+                    <button class="btn btn-primary notika-btn-primary" onclick="printDiv1();">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="DivIdToPrint">
+
+        <div class="row" id="row">
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="offer offer-radius offer-primary">
+                    <div class="offer-content">
+                        <img src="~/Content/img/logo1.jpg" class="image">
+                        <div class="cont">
+                            <p style="font-size: 14px;">Asset ID:<span>UCI00001</span></p>
+                            <p style="font-size: 14px;">Manufacturer:<span>ABCDEF</span></p>
+                            <p style="font-size: 14px;">Serial No:<span>12345</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        Load_Hospital();
+    });
+    $("#FromNo").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            //display error message
+
+            return false;
+        }
+    });
+    $("#ToNo").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            //display error message
+
+            return false;
+        }
+    });
+    function Generate() {
+        var from=$.trim($('#FromNo').val());
+        var to = $.trim($('#ToNo').val());
+        if (from <= to) {
+            if ((to - from) <= 1000) {
+                // ALERT('OKAY');
+
+                var str = "";
+                $.ajax({
+                    url: '@Url.Action("Load_Asset_Master_LabelPrint", "Master")',
+                    data: "from=" + from + "&to=" + to,
+                    type: "POST",
+                    async:false,
+                    success: function (resp) {
+                        if (resp != null) {
+                            debugger;
+                            var cnt = (to - from);
+                            for (var l = 0; l <= cnt; l++)
+                            {
+                                if (resp[l] != undefined)
+                                {
+                                str += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">';
+                                str += '<div class="offer offer-radius offer-primary">';
+                                str += '<div class="offer-content">';
+                                str += '<img src="@Url.Content("~/Content/img/logo1.jpg")" class="image">';
+                                str += '<div class="cont" style="line-height:8px">';
+                                str += '<p style="font-size: 14px;">Asset Name:<span>' + resp[l].Asset_Name + '</span></p>';
+                                //str += '<p style="font-size: 14px;">Asset Tag:<span>' + resp[l].Unison_ID + '</span></p>';
+                                str += '<p style="font-size: 14px;">Manufacturer:<span>' + resp[l].Manufacturer_Name + '</span></p>';
+                                str += '<p style="font-size: 14px;">Serial No:<span>' + resp[l].SerialNumber + '</span></p>';
+                                str += '<p style="font-size: 8px;">Service Center:<span>800UNISON (864766) / Servicecenter@unisonuae.com</span></p>';
+                                str += '</div>';
+                                str += '</div>';
+                                str += '</div>';
+                                str += '</div>';
+                                }
+                            }
+                        }
+                    }
+
+                });
+
+
+            $('#row').empty();
+            $('#row').append(str);
+            } else {
+                ALERT('We Can Generate Max 1000 Slips');
+            }
+
+        } else {
+            ALERT('From Number Always less than End Range');
+        }
+    }
+    function Generate_ByHSP() {
+        var Hospital_Id = $('#ddlHospital option:selected').val();
+        if (Hospital_Id !="-1") {
+            var str = "";
+                $.ajax({
+                    url: '@Url.Action("Load_Asset_Master_LabelPrint", "Master")',
+                    //data: "from=" + from + "&to=" + to,
+                    data: "Hospital_Id=" + Hospital_Id,
+                    type: "POST",
+                    async:false,
+                    success: function (resp) {
+                        if (resp != null) {
+                            debugger;
+                            if (resp.length != 0)
+                            {
+                            for (var l = 0; l <= resp.length; l++)
+                            {
+                                if (resp[l] != undefined)
+                                {
+                                str += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">';
+                                str += '<div class="offer offer-radius offer-primary">';
+                                str += '<div class="offer-content">';
+                                str += '<img src="@Url.Content("~/Content/img/logo1.jpg")" class="image">';
+                                str += '<div class="cont" style="line-height:8px">';
+                                //str += '<p style="font-size: 14px;">Asset Name:<span>' + resp[l].Asset_Name + '</span></p>';
+                                str += '<p style="font-size: 14px;">Asset Tag:<span>' + resp[l].Unison_ID + '</span></p>';
+                                str += '<p style="font-size: 14px;">Manufacturer:<span>' + resp[l].Manufacturer_Name + '</span></p>';
+                                str += '<p style="font-size: 13px;">Serial No:<span>' + resp[l].SerialNumber + '</span></p>';
+                                str += '<p style="font-size: 8px;">Service Center:<span>800UNISON (864766) / Servicecenter@unisonuae.com</span></p>';
+                                str += '</div>';
+                                str += '</div>';
+                                str += '</div>';
+                                str += '</div>';
+                                }
+                            }
+                            } else {
+                                ALERT('No Records for this Hospital');
+                            }
+
+                        }
+                    }
+
+                });
+
+
+            $('#row').empty();
+            $('#row').append(str);
+        } else {
+            ALERT('Please Select Hospital Name');
+        }
+    }
+
+    function PrintDiv() {
+        $('#Sectionprint').hide();
+        $("#DivIdToPrint").print();
+    }
+    function printDiv1() {
+
+        var divToPrint = document.getElementById('DivIdToPrint');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        //newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+        newWin.document.write('<html>');
+        newWin.document.write('<head>');
+        newWin.document.write('<link href="@Url.Content("//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css")" rel="stylesheet" />');
+        newWin.document.write('<link href="@Url.Content("~/Content/label.css")" rel="stylesheet" />');
+        newWin.document.write('</head>');
+        newWin.document.write('<body onload="window.print()">');
+        newWin.document.write(divToPrint.innerHTML);
+        newWin.document.write('</body>');
+        newWin.document.write('</html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+
+    }
+    function Load_Hospital() {
+        $.ajax({
+            url: '@Url.Action("LoadHospitalMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Hospital_Id + "'>" + resp[l].Hospital_Name + "</option>";
+                    }
+                    $('#ddlHospital').append(str);
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+    }
+
+</script>
+

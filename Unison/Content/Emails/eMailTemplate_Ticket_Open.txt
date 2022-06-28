@@ -1,0 +1,11 @@
+Dear {Requestor_Name}, 
+
+Thank you for contacting UNISON Service Center. 
+Your Service request “{SR_Number}” has been submitted.
+Our service team are already working on your request and will get back to you shortly.
+Please reach out to us providing the above Service request Number if you require any updates.
+
+Best Regards,
+UNUSON Service Center
+800UNISON (800 864 766)
+servicecenter@unisonuae.com

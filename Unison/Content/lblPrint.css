@@ -1,0 +1,53 @@
+﻿.label {
+    /* Avery 5160 labels -- CSS and HTML by MM at Boulder Information Services */
+    width: 3.025in; /* plus .6 inches from padding */
+    height: 1.875in; /* plus .125 inches from padding */
+    padding: .125in .3in 0;
+    margin-right: .125in; /* the gutter */
+    float: left;
+    text-align: center;
+    overflow: hidden;
+    outline: 1px dotted; /* outline doesn't occupy space like border does */
+    color: black;
+}
+
+    .label::after {
+        content: "";
+        background: url() center;
+        opacity: 0.2;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+    }
+
+
+.watermark {
+    width: 300px;
+    height: 100px;
+    display: block;
+    position: relative;
+    outline: 1px dotted; /* outline doesn't occupy space like border does */
+    color: black;
+    padding: .125in .3in 0;
+}
+
+    .watermark::after {
+        content: "";
+        background: url(http://www.unisonuae.com/wp-content/uploads/2016/12/logo-1.jpg);
+        opacity: 0.2;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+    }
+
+.page-break {
+    clear: left;
+    display: block;
+    page-break-after: always;
+}

@@ -1,0 +1,2303 @@
+﻿
+@{
+    ViewBag.Title = "IncidentMgmt";
+}
+<style type="text/css">
+    .multiselect-container {
+        height: 300px;
+        overflow-y: scroll;
+    }
+</style>
+<!-- Form Element area Start-->
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Search Incident Case</h2>
+                    </div>
+
+                    <div class="nk-int-st">
+                        <input type="text" placeholder="Service Code  eg: SR01004" id="txtUnisonIdSearch" />
+                        <button class="btn btn-primary notika-btn-primary" onclick="fnSearch();">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="notview">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list mg-t-30">
+                    <div class="cmp-tb-hd">
+                        <h2>Incident Creation</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Ticket Id</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Ticket Id" id="txtTicketId" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Requestor Name</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-support"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" style="width:250px;" id="ddlRequestor">
+                                        <option value="-1">Select</option>
+                                    </select>
+
+                                    <i class="fa fa-plus" onclick="fnReqadd();" id="Reqadd" aria-hidden="true"></i>&nbsp;
+                                    <i class="fa fa-search" onclick="fnReqSearch();" id="ReqSearch" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Hospital</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-support"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlHospital">
+                                        <option value="-1">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom:2%">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Problem category</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlProblemCategory">
+                                        <option value="-1">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Manufaturer</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlManufaturer">
+                                        <option value="-1">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Asset</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlAssets">
+                                        <option value="-1">Select</option>
+                                    </select>
+                                    <i class="fa fa-eye" onclick="fnAssetView();" id="AssetView" aria-hidden="true"></i>&nbsp;
+                                    <i class="fa fa-search" onclick="fnAssetSearch();" id="AssetSearch" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Asset Description</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <p id="lblDescription">Description :</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Service Provider</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlServiceProvider">
+                                        <option option="-1">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Problem Description</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    @*<input type="text" class="form-control" placeholder="Problem description" id="txtProblemDescripition">*@
+                                    <textarea class="form-control" rows="3" placeholder="Problem description" id="txtProblemDescripition"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Assignee</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    @*<input type="text" class="form-control" placeholder="Assignee" id="txtAssignee">*@
+                                    <select class="form-control" id="ddlAssignee" multiple="multiple">
+                                        @*<option value="-1">Select</option>*@
+                                    </select>
+                                    <i class="fa fa-plus" onclick="fnAssigneeadd();" id="Assigneeadd" aria-hidden="true"></i>&nbsp;
+                                    <i class="fa fa-search" onclick="fnAssigneeSearch();" id="AssigneeSearch" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Status</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlStatus"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Priority</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlPriority">
+                                        <option>High</option>
+                                        <option>Medium</option>
+                                        <option>Low</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Comments</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    @*<input type="text" class="form-control" placeholder="Comments" id="txtComments">*@
+                                    <button class="btn btn-primary notika-btn-primary" style="margin-bottom:12%" onclick="ShowOption_Add_Multi_Comment();" id="btnShoMulltiComment">Add</button>
+                                    <button class="btn btn-primary notika-btn-primary" style="margin-bottom:12%" onclick="ShowOption_View_Multi_Comment();" id="btnViewMulltiComment">View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Solution</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Solution" id="txtSolution">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Root Cause</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-calendar"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <select class="form-control" id="ddlRoot">
+                                        <option value="-1">Select</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Root Cause Description</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Root Cause Description" id="txtrootCDescripition">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Due date</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="dtDueDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Attachment</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    @*<input type="file" id="fileInput" accept="application/pdf" multiple />*@
+                                    <input type="file" id="fileInput" multiple />
+                                    @*<input type="button" id="fileButton" value="Upload Files" />*@
+                                    <a href="#" id="clsdFileView">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:2%">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Open Date</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="dtOpenDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="nk-int-mk">
+                                <h2>Cost</h2>
+                            </div>
+                            <div class="form-group ic-cmp-int form-elet-mg">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-tax"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Cost" id="txtCost">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <button class="btn btn-primary notika-btn-primary" id="btnCreate" onclick="fnSave();">Save</button>
+                            <button class="btn notika-btn-bluegray btn-reco-mg btn-button-mg" onclick="Reload();">Cancel</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>List Of Incident Case</h2>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-striped"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Form Element area End-->
+<!-- The Modal -->
+<div class="modal fade" id="Md_MultipleComments">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Multiple Comments</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table id="tblMultipleComments" class="table table-striped"></table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- The Modal Comments -->
+<!-- Model Attachments-->
+<div class="modal fade" id="Md_Attach">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Attachments</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table id="tblAttach" class="table table-striped"></table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--MODEL ATTACH END-->
+
+<div class="modal fade" id="Md_MultipleComments_ADD">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Comments</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="nk-int-mk">
+                            <h2>Comments</h2>
+                        </div>
+                        <div class="form-group ic-cmp-int">
+                            <div class="form-ic-cmp">
+                                <i class="notika-icon notika-support"></i>
+                            </div>
+                            <div class="nk-int-st">
+                                @*<input type= class="form-control" id="txtCommentsM"/>*@
+                                <textarea class="form-control" rows="5" id="txtCommentsM"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="fnSaveComments()">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Requestor POPup-->
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="mdlReqSearch" aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0">Requestor Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <div style="overflow-y:scroll; height:375px;">
+                        <table class="table table-striped table-bordered" id="tblReqDetails"></table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="mdlReqAdd" aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0">Requestor Addition</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-support"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Requestor Name" id="txtRequestorName1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-mail"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Email Address" id="txtEmailId1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-phone"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Contact Number" id="txtContactNumber1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-btn-info"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Job Title" id="txtJobTitle1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-btn-info"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Address" id="txtAddress1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            Hospital Name<i class="notika-icon notika-btn-info"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            @*<input type="text" class="form-control" placeholder="Hospital Name" id="txtHospitalName">*@
+                                            <select class="form-control" id="ddlHospital1">
+                                                <option value="-1">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-btn-info"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Unison Id" id="txtUnisonId1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <button class="btn btn-primary notika-btn-primary" id="btnCreate" onclick="fnSaveReq();">Save</button>
+                                    <button class="btn notika-btn-bluegray btn-reco-mg btn-button-mg" onclick="CancelReq();">Cancel</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--Requestor POPup End-->
+<!--Assignee POPup-->
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="mdlAssigneeSearch" aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0">Assignee Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <div style="overflow-y:scroll; height:375px;">
+                        <table class="table table-striped table-bordered" id="tblAssigneeDetails"></table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="mdlAssigneeAdd" aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0">Assignee Addition</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list">
+                            @*<div class="basic-tb-hd">
+                                    <h2>Input Text</h2>
+                                    <p>Text Inputs with different sizes by height and column.</p>
+                                </div>*@
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-support"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Name" id="txtAssigneeName2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-mail"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Email Address" id="txtEmailId2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-phone"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Contact Number" id="txtContactNumber2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-btn-info"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <input type="text" class="form-control" placeholder="Job Title" id="txtJobTitle2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            Manufacturer
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <select class="form-control" id="ddlManufaturer2">
+                                                <option value="-1">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ic-cmp-int">
+                                        <div class="form-ic-cmp">
+                                            Service Provider
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <select class="form-control" id="ddlServiceProvider2">
+                                                <option option="-1">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <button class="btn btn-primary notika-btn-primary" id="btnCreate" onclick="fnSaveAssignee();">Save</button>
+                                    <button class="btn notika-btn-bluegray btn-reco-mg btn-button-mg" onclick="fncancelAssignee();">Cancel</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--Assignee POPup-->
+<!--Asset POPup-->
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="mdlAssetSearch" aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0">Asset Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <div style="overflow-y:scroll; height:375px;">
+                        <table class="table table-striped table-bordered" id="tblAssetSearch"></table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="mdlAssetView" aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0">Asset details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <div style="overflow-y:scroll; height:275px;">
+                        <table class="table table-striped table-bordered" id="tblAssetDetails"></table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--Asset POPup-->
+@*<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>*@
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+@*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>*@
+<link href="~/Content/TEST/datatables.css" rel="stylesheet" />
+<script src="~/Content/TEST/datatables.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+@*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>*@
+<script src="~/Scripts/Multiselect.js"></script>
+@* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" type="text/css" />*@
+
+@*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>*@
+
+
+
+<script type="text/javascript">
+    //Global Variables
+    var GlobalId = 0;
+    var globalobj;
+    //Global Variables
+    $(document).ready(function ()
+    {
+
+        var Role = @Html.Raw(Json.Encode(@Session["Role"]));
+        if (Role != 'Admin' && Role != 'User') {
+            $('#Reqadd').hide();
+            $('#notview').hide();
+            $('#Assigneeadd').hide();
+            $('#txtTicketId').attr("disabled", "disabled");
+            $('#ddlRequestor').attr("disabled", "disabled");
+            $('#ddlHospital').attr("disabled", "disabled");
+            $('#ddlProblemCategory').attr("disabled", "disabled");
+            $('#ddlManufaturer').attr("disabled", "disabled");
+            $('#ddlAssets').attr("disabled", "disabled");
+            $('#ddlServiceProvider').attr("disabled", "disabled");
+            $('#ddlAssignee').attr("disabled", "disabled");
+            $('#ddlPriority').attr("disabled", "disabled");
+            $('#txtProblemDescripition').attr("disabled", "disabled");
+            $('#txtSolution').attr("disabled", "disabled");
+            $('#ddlRoot').attr("disabled", "disabled");
+            $('#txtrootCDescripition').attr("disabled", "disabled");
+            $('#dtDueDate').attr("disabled", "disabled");
+            $('#fileInput').attr("disabled", "disabled");
+            $('#dtOpenDate').attr("disabled", "disabled");
+            $('#txtCost').attr("disabled", "disabled");
+            $('#ddlStatus').attr("disabled", "disabled");
+
+        }
+        $('#btnShoMulltiComment').addClass('disabled');
+        $('#btnViewMulltiComment').addClass('disabled');
+
+        LoadData();
+        Load_Problem_Category();
+        Load_Status();
+        Load_Hospital();
+        Load_RootCause();
+        Load_AssetMaster();
+        Load_RequestorMaster();
+        LoadAssigneeMaster();
+       // $("#ddlAssignee option").empty();
+
+        Load_ServiceProvider();
+        LoadManufaturer();
+        $('#clsdFileView').hide();
+
+
+
+          });
+    //Document Ready Closed
+
+
+    function Load_Hospital() {
+        $.ajax({
+            url: '@Url.Action("LoadHospitalMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    $('#ddlHospital').empty();
+                    str += "<option value='-1'>Select</option>";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Hospital_Id + "'>" + resp[l].Hospital_Name + "</option>";
+                    }
+                    $('#ddlHospital').append(str);
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+    }
+
+    function fnEdit(Id) {
+        debugger;
+       // LoadAssigneeMaster();
+        //$("#ddlAssignee option").remove();
+        $('#txtAssignee').attr("disabled", "disabled");
+        var obj = Id;// JSON.parse(Id);
+        globalobj = obj;
+        var M_id = obj.Manufacturer_Id;
+        var S_id = obj.Service_Provider_Id;
+        LoadAssigneeMaster_ById(S_id, M_id);
+        $('#txtTicketId').val(obj.Ticket_Id);
+        $('#ddlRequestor').val(obj.Requestor_Id);
+        $('#ddlHospital').val(obj.Hospital_Id);
+        $('#ddlProblemCategory').val(obj.ProblemCategory_Id);
+        $('#ddlAssets').val(obj.Assets_Itration_Id);
+        $('#lblDescription').html(obj.Asset_Description);
+        $('#txtProblemDescripition').val(obj.ProblemDescripition);
+        var hidValue = obj.Assignee;
+        var selectedOptions = hidValue.split(",");
+        for (var i in selectedOptions) {
+            var optionVal = selectedOptions[i];
+            $("#ddlAssignee option[value ='" + optionVal + "']").prop("selected", true);
+        }
+        $("#ddlAssignee").multiselect('refresh');
+        $("#ddlAssignee").multiselect('updateButtonText');
+        $('#ddlStatus').val(obj.Status_Id);
+        $('#ddlPriority').val(obj.Priority);
+        $('#txtComments').val(obj.Comments);
+        $('#txtSolution').val(obj.Solution);
+        $('#ddlRoot').val(obj.Root_Id);
+        $('#txtrootCDescripition').val(obj.rootCDescripition);
+        $('#dtDueDate').val(obj.dtDueDate);
+        $('#btnShoMulltiComment').removeClass('disabled');
+        $('#btnViewMulltiComment').removeClass('disabled');
+        $('#btnShoMulltiComment').prop('disabled', false);
+        $('#btnViewMulltiComment').prop('disabled', false);
+        GlobalId = obj.Id;
+        Is_Edit = true;
+        $('#btnCreate').text('Update');
+        $('#ddlManufaturer').val(obj.Manufacturer_Id);
+        $('#ddlServiceProvider').val(obj.Service_Provider_Id);
+        $('#dtOpenDate').val(obj.Open_Date);
+        $('#txtCost').val(obj.Cost);
+        $('#clsdFileView').attr('onclick', "fnloadattach('" + obj.Id + "');");
+        $('#clsdFileView').show();
+
+    }
+    //$("#fileButton").click(function () {
+    //    upload();
+    //});
+    function upload() {
+        debugger;
+        var files = $("#fileInput").get(0).files;
+        var fileData = new FormData();
+        //for (var i = 0; i < files.length; i++) {
+        //    var extension = files[i].name.substr(-3);
+        //    if (extension != "pdf") {
+        //        alert('PDF files only allowed')
+        //        return;
+        //    }
+        //}
+        for (var i = 0; i < files.length; i++) {
+            fileData.append("fileInput", files[i]);
+        }
+        fileData.append("ID", GlobalId);
+
+        $.ajax({
+           //acceptFileTypes: /(\.pdf|\/)(pdf)$/i,
+            type: "POST",
+            url: '@Url.Action("UploadFiles", "Master")',
+            dataType: "json",
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            //data: JSON.stringify({ ID: GlobalId, inputFile: fileData }),
+            data: fileData  ,
+            success: function (result, status, xhr) {
+                //ALERT(result);
+            },
+            error: function (xhr, status, error) {
+                ALERT(status);
+            }
+        });
+    }
+
+    function fnSave()
+    {
+        debugger
+        var Requestor=$.trim($('#ddlRequestor').val());
+        var Hospital = $.trim($('#ddlHospital').val());
+        var ProblemCategory = $.trim($('#ddlProblemCategory').val());
+        var Assets = $.trim($('#ddlAssets').val());
+        var ProblemDescription = $.trim($('#txtProblemDescripition').val());
+        //var Assignee = $.trim($('#ddlAssignee option:selected').val());// $.trim($('#txtAssignee').val());
+        var Assignee = $('#ddlAssignee option:selected').map(function () { return this.value }).get().join(',');
+        var Status = $.trim($('#ddlStatus').val());
+        var Priority = $.trim($('#ddlPriority').val());
+        var Comments = $.trim($('#txtComments').val());
+        var Solutions = $.trim($('#txtSolution').val());
+        var Root = $.trim($('#ddlRoot').val());
+        var RootDescription = $.trim($('#txtrootCDescripition').val());
+        var DueDate = $.trim($('#dtDueDate').val());
+        var Cost = $.trim($('#txtCost').val());
+        var dtOpenDate = $.trim($('#dtOpenDate').val())
+
+        var Manufacturer = $.trim($('#ddlManufaturer option:selected').val());
+        var Service_Provider = $.trim($('#ddlServiceProvider option:selected').val());
+        if (Requestor == "-1") {
+            ALERT('Please Select Requestor');
+            return false;
+        }
+        if (Hospital == "-1") {
+            ALERT('Please Select Hospital');
+            return false;
+        }
+        if (ProblemCategory == "-1") {
+            ALERT('Please Select Problem Category');
+            return false;
+        }
+        if (Assets == "-1") {
+            ALERT('Please Select Asset');
+            return false;
+        }
+        if (ProblemDescription == "") {
+            ALERT('Please Select Problem Description');
+            return false;
+        }
+        if (Manufacturer == "-1") {
+            ALERT('Please Select Manufacturer');
+            return false;
+        }
+        //if (Assignee == "") {
+        //    ALERT('Please Select  Assignee');
+        //    return false;
+        //}
+        if (Status == "") {
+            ALERT('Please Select  Status');
+            return false;
+        }
+        if (Status == "Closed") {
+            if (Root == "-1") {
+                ALERT('Please Select  Root');
+                return false;
+            }
+            if (Solutions == "") {
+                ALERT('Please Select Solutions');
+                return false;
+            }
+            if (RootDescription == "") {
+                ALERT('Please Select  Root Description');
+                return false;
+            }
+            if (DueDate == "") {
+                ALERT('Please Select  DueDate');
+                return false;
+            }
+        }
+        if (Priority == "") {
+            ALERT('Please Select  Priority');
+            return false;
+        }
+
+
+        $.ajax({
+            url: '@Url.Action("SaveIncidetMaster", "Master")',
+            data: "Requestor=" + Requestor + "&Hospital=" + Hospital + "&ProblemCategory=" + ProblemCategory + "&Assets=" + Assets + "&ProblemDescription=" + ProblemDescription
+            + "&Assignee=" + Assignee + "&Status=" + Status + "&Priority=" + Priority + "&Comments=" + Comments + "&Solutions=" + Solutions + "&Root=" + Root
+            + "&RootDescription=" + RootDescription + "&DueDate=" + DueDate + "&Id=" + GlobalId
+            + "&Manufacturer=" + Manufacturer + "&Service_Provider=" + Service_Provider + "&Cost=" + Cost + "&OpenDate=" + dtOpenDate,
+            type: "POST",
+            async:false,
+            success: function (resp) {
+                debugger
+                if (resp != null) {
+                    if (resp.split(':')[0] == "SUCCESS") {
+                        if (GlobalId == 0) {
+                            GlobalId = resp.split(':')[1]
+                            upload();
+                            ALERT("Saved Successfuly.");
+                            fncancel();
+                        }
+                        else {
+                            upload();
+                            ALERT("Updated Successfuly.");
+                        }
+                        LoadData();
+                    } else {
+                        ALERT("Error");
+                        //console.log(resp);
+                    }
+                } else {
+                    ALERT("No Data");
+                    //console.log(resp);
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr.responseText);
+            },
+            failure: function (xhr, textStatus, errorThrown) {
+                console.log(xhr.responseText);
+            }
+        });
+
+    }
+    function LoadData() {
+        $.ajax({
+            url: '@Url.Action("Load_Incident_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            async: false,
+            success: function (resp) {
+                if (resp != null) {
+
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    if (Role == 'Admin' || Role == 'User') {
+                        str += "<th>Action</th>";
+                        str += "<th>View</th>";
+                    }
+                    str += "<th>Created Date</th>";
+                    str += "<th>Ticket Id</th>";
+                    str += "<th>Asset Id</th>";
+                    str += "<th>Hospital Name</th>";
+                    str += "<th>Manufacture Name</th>";
+                    str += "<th>Asset Name</th>";
+                    str += "<th>Asset Description</th>";
+                    str += "<th>Serial Number</th>";
+                    str += "<th>Problem Description</th>";
+                    str += "<th>Category Name</th>";
+                    str += "<th>Service Provider Name Name</th>";
+                    str += "<th>Assigneee</th>";
+                    str += "<th>Assigneee Mobile No.</th>";
+                    str += "<th>Due Date</th>";
+                    str += "<th>Requestor Name</th>";
+                    str += "<th>Requestor Mobile No.</th>";
+                    str += "<th>Priority</th>";
+                    str += "<th>Status</th>";
+                    str += "<th>Solution</th>";
+                    str += "<th>Root Cause Name</th>";
+                    str += "<th>Root Cause Description</th>";
+                    str += "<th>User Name</th>";
+                    str += "<th>Comments</th>";
+                    str += "<th>Closed Date</th>";
+                    str += "<th>Contract Type</th>";
+                    str += "<th>Is Active</th>";
+                    str += "<th>Attachements</th>";
+                    if (Role == 'Admin' || Role == 'User') {
+                        str += "<th>Delete</th>";
+                    }
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        var ac = JSON.stringify(resp[l]);
+                        /*if (Role != "UserView" || resp[l].Category_Name != "Healthcare IT") {*/
+                            if (Role == 'Admin' || Role == 'User') {
+                                str += "<td><a href='#' onclick=fnEdit(" + ac.replace(/\ /g, "&nbsp;") + ");>Edit</a></td>";
+                                // str += "<td><a href='#' onclick=fnEdit('" + resp[l].Id + "')>Edit</a></td>";
+                                str += "<td><a href='#' onclick=fnViewComments('" + resp[l].Id + "')>View</a></td>";
+                            }
+                            str += "<td>" + resp[l].Created_Date + "</td>";
+                            str += "<td>" + resp[l].Ticket_Id + "</td>";
+                            str += "<td>" + resp[l].Assets_Id + "</td>";
+                            str += "<td>" + resp[l].Hospital_Name + "</td>";
+                            str += "<td>" + resp[l].Manufacturer_Name + "</td>";
+                            str += "<td>" + resp[l].Asset_Name + "</td>";
+                            str += "<td>" + resp[l].Asset_Description + "</td>";
+                            str += "<td>" + resp[l].SerialNumber + "</td>";
+                            str += "<td>" + resp[l].ProblemDescripition + "</td>";
+                            str += "<td>" + resp[l].Category_Name + "</td>";
+                            str += "<td>" + resp[l].ServiceProvider_Name + "</td>";
+                            str += "<td>" + resp[l].Assignee_Name + "</td>";
+                            str += "<td>" + resp[l].Contact_Number + "</td>";
+                            str += "<td>" + resp[l].dtDueDate + "</td>";
+                            str += "<td>" + resp[l].RequestorName + "</td>";
+                            str += "<td>" + resp[l].RequestorMobileNo + "</td>";
+                            str += "<td>" + resp[l].Priority + "</td>";
+                            str += "<td>" + resp[l].Status_Name + "</td>";
+                            str += "<td>" + resp[l].Solution + "</td>";
+                            str += "<td>" + resp[l].RootCause_Name + "</td>";
+                            str += "<td>" + resp[l].rootCDescripition + "</td>";
+                            str += "<td>" + resp[l].Created_By + "</td>";
+                            str += "<td>" + resp[l].Comments + "</td>";
+                            str += "<td>" + resp[l].Closed_Date + "</td>";
+                            str += "<td>" + resp[l].ContractType + "</td>";
+                            if (resp[l].Is_Active = 1) {
+                                str += "<td>Yes</td>";
+                            } else {
+                                str += "<td>No</td>";
+                            }
+                            str += "<td><a href='#' onclick=fnloadattach(" + resp[l].Id + ");>Attachments</a></td>";
+                            if (Role == 'Admin' || Role == 'User') {
+                                str += "<td><a href='#' onclick=Delete(" + resp[l].Id + ");>Delete</a></td>";
+                            }
+                            str += "</tr>";
+                        }
+                   // }
+                    str += "</tbody>";
+                    $('#tblData').empty();
+                    $('#tblData').append(str);
+                    $('#tblData').DataTable().destroy();
+                    $('#tblData').DataTable(
+                        {
+                            "order": [[0, "desc"]],
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'copyHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+                                    }
+                                },
+                                {
+                                    extend: 'excelHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+                                    }
+                                }
+                            ]
+                        }
+                    );
+                } else {
+                    ALERT("No Data");
+                }
+            }
+        });
+    }
+    function fnloadattach(id) {
+        debugger
+         $.ajax({
+            url: '@Url.Action("LoadAttachments", "Master")',
+            data: "Case_Id=" + id,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>File Name</th>";
+                    str += "<th>Date Time</th>";
+                    str += "<th>View</th>";
+                    if (Role == "Admin") {
+                        str += "<th>Delete</th>";
+                    }
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        /*str += "<td>" + resp[l].File_Name + ".pdf" + "</td>";*/
+                        str += "<td>" + resp[l].File_Name + "</td>";
+                        str += "<td>" + resp[l].Created_Date + "</td>";
+                        str += '<td><a href="#" onclick="viewattach(\'' + resp[l].File_Name + '\', \'' + resp[l].Case_Id + '\', \'' + resp[l].File_Ext + '\');">Preview</a></td>';
+                        if (Role == "Admin") {
+                            str += '<td><a href="#" onclick="fnDeleteFile(\'' + resp[l].Id + '\');">Delete</a></td>';
+                        }
+
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblAttach').empty();
+                    $('#tblAttach').append(str);
+                    //$('#tblAttach').DataTable().destroy();
+                    $('#tblAttach').DataTable();
+                    $('#Md_Attach').modal('show');
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function viewattach(Filename, CaseId,Exten) {
+        debugger;
+        var cur_HUri = location.href.split('Master')[0];
+        // Filename = Filename + ".pdf";
+        var ac = cur_HUri + "/content/Upload/" + CaseId + "/" + Filename + "." + Exten;
+        console.log(ac);
+        window.open(ac, "_blank");
+
+    }
+     @*function Load_ServiceProvider() {
+        $.ajax({
+            url: '@Url.Action("LoadServiceProviderMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            async:false,
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].ServiceProvider_Id + "'>" + resp[l].ServiceProvider_Name + "</option>";
+                    }
+                    $('#ddlServiceProvider').append(str);
+                } else {
+                    //ALERT("No Data");
+                }
+
+            }
+        });
+    }*@
+   function Load_Problem_Category() {
+        $.ajax({
+            url: '@Url.Action("LoadProblemCategory","Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Id + "'>" + resp[l].Category_Name + "</option>";
+                    }
+                    $('#ddlProblemCategory').append(str);
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+     }
+     function Load_Status() {
+        $.ajax({
+            url: '@Url.Action("LoadstatusMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Id + "'>" + resp[l].Status_Name + "</option>";
+                    }
+                    $('#ddlStatus').append(str);
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+    }
+
+    function Load_RootCause() {
+        $.ajax({
+            url: '@Url.Action("LoadRootCasueMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Id + "'>" + resp[l].RootCause_Name + "</option>";
+                    }
+                    $('#ddlRoot').append(str);
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+    }
+    function Load_AssetMaster() {
+        $.ajax({
+            url: '@Url.Action("Load_Asset_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Asset_Id + "'>" + resp[l].Asset_Name + " - " + resp[l].Unison_ID + "</option>";
+                    }
+                    $('#ddlAssets').append(str);
+
+
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function Load_RequestorMaster() {
+        $('#ddlRequestor').empty();
+        $.ajax({
+            url: '@Url.Action("Load_requestor_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<option value='-1'>Select</option>";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Id + "'>" + resp[l].RequestorName + "</option>";
+                    }
+                    $('#ddlRequestor').append(str);
+
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function fncancel() {
+        $('#ddlRequestor').val('-1');
+        $('#ddlHospital').val('-1');
+        $('#ddlProblemCategory').val('-1');
+        $('#ddlAssets').val('-1');
+        $('#txtProblemDescripition').val('');
+        //$('#txtAssignee').val('');
+        $('#ddlAssignee').val('-1');
+        $('#ddlAssignee').multiselect('refresh');
+        $('#ddlStatus').val('-1');
+        $('#ddlPriority').val('0');
+        $('#txtComments').val('');
+        $('#txtSolution').val('');
+        $('#ddlRoot').val('-1');
+        $('#txtrootCDescripition').val('');
+        $('#txtTicketId').val('');
+        $('#dtDueDate').val('');
+        $('#dtOpenDate').val('');
+        $('#txtCost').val('');
+        GlobalId = 0;
+        $('#btnCreate').text('Save');
+      }
+    function fnViewComments(CaseId)
+    {
+         $.ajax({
+            url: '@Url.Action("Load_Comments_By_CaseId", "Master")',
+            data: "Case_Id=" + CaseId,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>User Name</th>";
+                    str += "<th >Comments</th>";
+                    str += "<th>Date Time</th>";
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        str += "<td>" + resp[l].User_Name + "</td>";
+                        str += "<td style='width: 157px;word-break:break-word'>" + resp[l].Comments + "</td>";
+                        str += "<td>" + resp[l].Created_Date + "</td>";
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblMultipleComments').empty();
+                    $('#tblMultipleComments').append(str);
+                    $('#tblMultipleComments').DataTable().destroy();
+                    $('#tblMultipleComments').DataTable();
+                    $('#Md_MultipleComments').modal('show');
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function fnSaveComments()
+    {
+        var CaseId =0;
+        if (GlobalId != 0) {
+             CaseId = GlobalId;
+        }
+        var Comments = $.trim($('#txtCommentsM').val());
+         $.ajax({
+            url: '@Url.Action("SP_Insert_Comment", "Master")',
+            data: "Case_Id=" + CaseId + "&Comments=" + Comments,
+            type: "POST",
+            success: function (resp) {
+                $('#Md_MultipleComments_ADD').modal('hide');
+            }
+        });
+    }
+    function ShowOption_Add_Multi_Comment() {
+        $('#Md_MultipleComments_ADD').modal('show');
+    }
+    function ShowOption_View_Multi_Comment() {
+        var CaseId = 0;
+        if (GlobalId != 0) {
+            CaseId = GlobalId;
+        }
+        fnViewComments(CaseId);
+    }
+    function LoadAssigneeMaster() {
+        debugger
+        $.ajax({
+            url: '@Url.Action("Load_Assignee_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                debugger
+                if (resp != null) {
+                    var str = "";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Assignee_Id + "'>" + resp[l].Assignee_Name.trim() + "</option>";
+                    }
+                    $('#ddlAssignee').append(str);
+                    $('#ddlAssignee').multiselect({
+                        includeSelectAllOption: true,
+                        enableCaseInsensitiveFiltering: true,
+                        enableFiltering: true,
+                        maxHeight: 200,
+                       nonSelectedText: 'Select',
+                        buttonWidth: '260px'
+                    });
+                    //$("#ddlAssignee option").remove();
+                    //$('#ddlAssignee').multiselect('rebuild');
+
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function Delete(Id) {
+        var r = confirm("Are you Sure You want to delete it");
+        if (r == true) {
+             $.ajax({
+            url: '@Url.Action("Delete_IncidentMaster", "Master")',
+            data: "Id=" + Id,
+            type: "POST",
+            success: function (resp) {
+                LoadData();
+            }
+        });
+        }
+
+
+    }
+     function Load_ServiceProvider() {
+        $.ajax({
+            url: '@Url.Action("LoadServiceProviderMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            async:false,
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].ServiceProvider_Id + "'>" + resp[l].ServiceProvider_Name + "</option>";
+                    }
+                    $('#ddlServiceProvider').append(str);
+                } else {
+                    //ALERT("No Data");
+                }
+
+            }
+        });
+     }
+    function LoadManufaturer() {
+        $.ajax({
+            url: '@Url.Action("LoadManufacturerMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            async:false,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    $('#ddlManufaturer').empty();
+                    str += "<option value='-1'>Select</option>";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Manufacturer_Id + "'>" + resp[l].Manufacturer_Name + "</option>";
+                    }
+                    $('#ddlManufaturer').append(str);
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+     }
+    $("#ddlServiceProvider").change(function () {
+        debugger;
+        var Id = this.value;
+        $('#ddlAssignee').val('-1');
+        var Manufacturer = $.trim($('#ddlManufaturer option:selected').val());
+        LoadAssigneeMaster_ById(Id, Manufacturer);
+
+    });
+    function LoadAssigneeMaster_ById(Id, Manufacturer) {
+
+       //debugger
+        var data = {
+            "ServiceProvider_Id": Id,
+            "Manufacturer": Manufacturer
+        }
+        $("#ddlAssignee option").remove();
+        $.ajax({
+            url: '@Url.Action("Load_Assignee_Master_Id", "Master")',
+            //data:"ServiceProvider_Id="+Id,
+            data:data,
+            type: "POST",
+            success: function (resp) {
+                //debugger
+                if (resp.length != 0) {
+                    var str = "";
+                   // str += "<option value='-1'>Select</option>";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Assignee_Id + "'>" + resp[l].Assignee_Name.trim() + "</option>";
+                    }
+                    //$('#ddlAssignee').empty();
+                    $('#ddlAssignee').append(str);
+                   // $('#ddlAssignee').multiselect('destroy');
+                    
+                    $('#ddlAssignee').multiselect({
+                        includeSelectAllOption: true,
+                        enableCaseInsensitiveFiltering: true,
+                        enableFiltering: true,
+                        maxHeight: 200,
+                        nonSelectedText: 'Select',
+                        buttonWidth: '260px'
+                    });
+                    $('#ddlAssignee').multiselect('rebuild');
+                    var hidValue = globalobj.Assignee;
+                    var selectedOptions = hidValue.split(",");
+                    for (var i in selectedOptions) {
+                        var optionVal = selectedOptions[i];
+                        $("#ddlAssignee option[value ='" + optionVal + "']").prop("selected", true);
+                    }
+                    $("#ddlAssignee").multiselect('refresh');
+                    $("#ddlAssignee").multiselect('updateButtonText');
+                } else {
+
+                    //str += "<option value=''>" +Nodata+ "</option>";
+                    $('#ddlAssignee').multiselect('rebuild');
+                    ALERT("No Assignees for Selected Manufactre & Service Providers");
+                }
+
+            }
+        });
+    }
+    $("#ddlManufaturer").change(function () {
+        debugger;
+        var Id = this.value;
+        $('#ddlAssets').val('-1');
+        var hospital_Id = $('#ddlHospital').val();
+        //Pass Hospital Id and Manufaturer Id to get Assets
+         Load_AssetMaster_ById(Id, hospital_Id);
+
+    });
+    //$("#ddlRequestor").change(function () {
+    //    debugger;
+    //    var Id = this.value;
+    //    $('#ddlHospital').val('-1');
+    //    Load_Hospital_BYREQUESTORID(Id);
+
+    //});
+    function Load_AssetMaster_ById(Id, Hospital_Id) {
+        $.ajax({
+            url: '@Url.Action("Load_Asset_Master_ById", "Master")',
+            data: "Id=" + Id + "&Hospital_Id=" + Hospital_Id,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<option value='-1'>Select</option>";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Asset_Id + "'>" + resp[l].Asset_Name + " - " + resp[l].Unison_ID + "</option>";
+                    }
+                    $('#ddlAssets').empty();
+                    $('#ddlAssets').append(str);
+
+                    if (resp.length == 0) {
+                        ALERT("No Assets for the selected manufacturer and hospital.(Select Hospital First then Select Manufacturer.)");
+                    }
+
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+
+      //Reqpopup
+     function fnSaveReq()
+    {
+        var RequestorName = $.trim($('#txtRequestorName1').val());
+        var EmailId = $.trim($('#txtEmailId1').val());
+        var ContactNumber = $.trim($('#txtContactNumber1').val());
+        var JobTitle = $.trim($('#txtJobTitle1').val());
+        var Address = $.trim($('#txtAddress1').val());
+        var HospitalName = $.trim($('#ddlHospital1').val());// $.trim($('#txtHospitalName').val());
+        var UnisonId = $.trim($('#txtUnisonId1').val());
+        if (RequestorName == "") {
+            ALERT('Please Enter the Requestor Name');
+            return false;
+        }
+        if (ContactNumber == "") {
+            ALERT('Please Enter the Contact Number');
+            return false;
+        }
+        if (HospitalName == "") {
+            ALERT('Please Enter the Hospital Name');
+            return false;
+        }
+        $.ajax({
+            url: '@Url.Action("SaveRequestorMaster", "Master")',
+            data: "RequestorName=" + RequestorName + "&EmailId=" + EmailId + "&ContactNumber=" + ContactNumber + "&JobTitle=" + JobTitle + "&Address=" + Address + "&HospitalName=" + HospitalName + "&UnisonId=" + UnisonId + "&Id=" + GlobalId,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    if (resp.split(':')[0] == "SUCCESS") {
+                        if (GlobalId == 0) {
+                            ALERT("Saved Successfuly.");
+                        }
+                        else {
+                            ALERT("Updated Successfuly.");
+                        }
+                        //$('#txtRequestorName').val('');
+                        //$('#txtEmailId').val('');
+                        //$('#txtContactNumber').val('');
+                        //$('#txtJobTitle').val('');
+                        //$('#txtAddress').val('');
+                        //$('#txtHospitalName').val('');
+                        //$('#txtUnisonId').val('');
+                        //GlobalId = 0;
+                        CancelReq();
+                        //LoadData();
+
+                        $('#mdlReqAdd').modal('hide');
+                        Load_RequestorMaster();
+                    } else {
+                        ALERT("Error");
+                    }
+                } else {
+                    ALERT("Error");
+                }
+
+            }
+        });
+
+    }
+    function CancelReq() {
+        $('#txtRequestorName').val('');
+        $('#txtEmailId').val('');
+        $('#txtContactNumber').val('');
+        $('#txtJobTitle').val('');
+        $('#txtAddress').val('');
+        //$('#txtHospitalName').val('');
+        $('#txtUnisonId').val('');
+        $('#ddlHospital').val('-1');
+        GlobalId = 0;
+        $('#btnCreate').text('Save');
+    }
+    function fnReqadd() {
+        debugger;
+        $('#ddlHospital1').empty();
+         $.ajax({
+            url: '@Url.Action("LoadHospitalMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+             type: "POST",
+             async: false,
+             success: function (resp) {
+
+                 if (resp != null) {
+                     debugger;
+                    var str = "";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Hospital_Id + "'>" + resp[l].Hospital_Name + "</option>";
+                    }
+                    $('#ddlHospital1').append(str);
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+        $('#mdlReqAdd').modal('show');
+    }
+     function fnselect(Id) {
+        debugger
+        $('#ddlRequestor').val(Id);
+        $('#mdlReqSearch').modal('hide');
+    }
+    function fnReqSearch() {
+        debugger;
+        $('#tblReqDetails').empty();
+  $.ajax({
+            url: '@Url.Action("Load_requestor_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>Select</th>";
+                    str += "<th>Requestor Name</th>";
+                    str += "<th>Email Id</th>";
+                    str += "<th>Contact Number</th>";
+                    str += "<th>JobTitle</th>";
+                    str += "<th>Hospital Name</th>";
+                    str += "<th>Service Code</th>";
+                    str += "<th>Select</th>";
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        str += "<td><a href='#' onclick=fnselect(" + resp[l].Id + ");>Select</a></td>";
+                        str += "<td>" + resp[l].RequestorName + "</td>";
+                        str += "<td>" + resp[l].Email_Id + "</td>";
+                        str += "<td>" + resp[l].Contact_Number + "</td>";
+                        str += "<td>" + resp[l].JobTitle + "</td>";
+                        str += "<td>" + resp[l].Hospital_Name + "</td>";
+                        str += "<td>" + resp[l].UnisonId + "</td>";
+                        str += "<td><a href='#' onclick=fnselect(" + resp[l].Id + ");>Select</a></td>";
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblReqDetails').empty();
+                    $('#tblReqDetails').append(str);
+                    $('#tblReqDetails').DataTable().destroy();
+                    $('#tblReqDetails').DataTable();
+
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+
+        $('#mdlReqSearch').modal('show');
+    }
+    ///Requestor POPUP end
+
+    //Assignee POPUP
+    function fnSaveAssignee()
+    {
+        var AssigneeName = $.trim($('#txtAssigneeName2').val());
+        var EmailId=$.trim( $('#txtEmailId2').val());
+        var ContactNumber=$.trim($('#txtContactNumber2').val());
+        //var Location = $.trim($('#txtLocation').val());
+        var JobTitle = $.trim($('#txtJobTitle2').val());
+        var ddlManufaturer = $('#ddlManufaturer2 option:selected').val();
+        var ServiceProvider = $('#ddlServiceProvider2 option:selected').val();
+        if (AssigneeName == "") {
+            ALERT('Please Enter the Assignee Name');
+            return false;
+        }
+        //if (EmailId == "") {
+        //    ALERT('Please Enter the Email Id');
+        //    return false;
+        //}
+        if (ContactNumber == "") {
+            ALERT('Please Enter the Contact Number');
+            return false;
+        }
+        //if (Location == "") {
+        //    ALERT('Please Enter the Location');
+        //    return false;
+        //}
+        //if (JobTitle == "") {
+        //    ALERT('Please Enter the Job Title');
+        //    return false;
+        //}
+        if (ddlManufaturer == "-1") {
+            ALERT('Please Select the Manufacturer');
+            return false;
+        }
+        if (ServiceProvider == "-1") {
+            ALERT('Please Select the Service Provider');
+            return false;
+        }
+
+        $.ajax({
+            url: '@Url.Action("SaveAssigneeMaster", "Master")',
+            data: "AssigneeName=" + AssigneeName + "&EmailId=" + EmailId + "&ContactNumber=" + ContactNumber + "&Location=" + Location + "&JobTitle=" + JobTitle + "&ServiceProvider=" + ServiceProvider + "&Manufaturer=" + ddlManufaturer + "&Id=" + GlobalId,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    if (resp.split(':')[0] == "SUCCESS") {
+                        if (GlobalId == 0) {
+                            ALERT("Saved Successfuly.");
+                        }
+                        else {
+                            ALERT("Updated Successfuly.");
+                        }
+                        //$('#txtAssigneeName').val('');
+                        //$('#txtEmailId').val('');
+                        //$('#txtContactNumber').val('');
+                        ////$('#txtLocation').val('');
+                        //$('#txtJobTitle').val();
+                        //$('#ddlManufaturer').val("-1");
+                        //$('#ddlServiceProvider').val("-1");
+                        //GlobalId = 0;
+                        //$('#btnCreate').text('Save');
+                        fncancelAssignee();
+                        LoadAssigneeMaster();
+                        $('#mdlAssigneeSearch').modal('hide');
+
+                    } else {
+                        ALERT("Error");
+                    }
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+
+    }
+    function fnAssigneeSearch() {
+        $.ajax({
+            url: '@Url.Action("Load_Assignee_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>Assignee Name</th>";
+                    str += "<th>Email Id</th>";
+                    str += "<th>Contact Number</th>";
+                    str += "<th>Manufacturer Name</th>";
+                    str += "<th>ServiceProvider Name</th>";
+                    str += "<th>Delete</th>";
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        str += "<td>" + resp[l].Assignee_Name + "</td>";
+                        str += "<td>" + resp[l].Email_Id + "</td>";
+                        str += "<td>" + resp[l].Contact_Number + "</td>";
+                        str += "<td>" + resp[l].Manufacturer_Name + "</td>";
+                        str += "<td>" + resp[l].ServiceProvider_Name + "</td>";
+                        str += "<td><a href='#' onclick=fnSelectAssignee(" + resp[l].Assignee_Id + ");>Select</a></td>";
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblAssigneeDetails').empty();
+                    $('#tblAssigneeDetails').append(str);
+                    $('#tblAssigneeDetails').DataTable().destroy();
+                    $('#tblAssigneeDetails').DataTable();
+
+                } else {
+                    ALERT("No Data");
+                }
+                $('#mdlAssigneeSearch').modal('show');
+            }
+        });
+    }
+    function fnSelectAssignee(Id) {
+        debugger
+        $('#ddlAssignee').val(Id);
+        $('#mdlAssigneeSearch').modal('hide');
+    }
+    function fnAssigneeadd() {
+        debugger;
+        $('#mdlAssigneeAdd').modal('show');
+        Load_ServiceProvider2();
+        LoadManufaturer2();
+    }
+    function Load_ServiceProvider2() {
+        $('#ddlServiceProvider2').empty()
+        $.ajax({
+            url: '@Url.Action("LoadServiceProviderMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            async:false,
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].ServiceProvider_Id + "'>" + resp[l].ServiceProvider_Name + "</option>";
+                    }
+                    $('#ddlServiceProvider2').append(str);
+                } else {
+                    //ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function LoadManufaturer2() {
+        $('#ddlManufaturer2').empty();
+        $.ajax({
+            url: '@Url.Action("LoadManufacturerMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            async:false,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Manufacturer_Id + "'>" + resp[l].Manufacturer_Name + "</option>";
+                    }
+                    $('#ddlManufaturer2').append(str);
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+    }
+    function fncancelAssignee() {
+        $('#txtAssigneeName').val('');
+        $('#txtEmailId').val('');
+        $('#txtContactNumber').val('');
+        //$('#txtLocation').val('');
+        $('#txtJobTitle').val();
+        $('#ddlManufaturer').val("-1");
+        $('#ddlServiceProvider').val("-1");
+        GlobalId = 0;
+        $('#btnCreate').text('Save');
+    }
+    ///Assignee popup end
+
+    //Asset POPUP
+    function fnAssetView() {
+        debugger;
+        if ($('#ddlAssets').val() == '-1') {
+            alert('Select Asset name');
+            return;
+        }
+        var Id = $('#ddlAssets').val();
+        debugger;
+          $.ajax({
+            url: '@Url.Action("Load_Asset_Master_ByAssetId", "Master")',
+            data: "Id=" + Id,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>Unison Id</th>";
+                    str += "<th>Asset Name</th>";
+                    str += "<th>Asset Description</th>";
+                    str += "<th>Serial Number</th>";
+                    str += "<th>Installation Date</th>";
+                    str += "<th>System Id</th>";
+                    str += "<th>Last PM Date</th>";
+                    str += "<th>PM Specs</th>";
+                    str += "<th>Contraact Type</th>";
+                    str += "<th>Service Contraact Date</th>";
+                    str += "<th>Service Contraact E.Date</th>";
+                    str += "<th>Service Provider Name</th>";
+                    str += "<th>Manufacturer Name</th>";
+                    str += "<th>Is Active</th>";
+                    str += "<th>Created By</th>";
+                    str += "<th>Created date</th>";
+
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        str += "<td>" + resp[l].Unison_ID + "</td>";
+                        str += "<td>" + resp[l].Asset_Name + "</td>";
+                        str += "<td>" + resp[l].Asset_Description + "</td>";
+                        str += "<td>" + resp[l].SerialNumber + "</td>";
+                        str += "<td>" + resp[l].InstallationDate + "</td>";
+                        str += "<td>" + resp[l].SystemId + "</td>";
+                        if (resp[l].LastPMDate != null) {
+                            str += "<td>" + resp[l].LastPMDate + "</td>";
+                        }
+                        else {
+                            str += "<td></td>";
+                        }
+
+                        str += "<td>" + resp[l].PMSpecs + "</td>";
+                        str += "<td>" + resp[l].ContractType + "</td>";
+                        if (resp[l].ServiceContraactDate != null) {
+                            str += "<td>" + resp[l].ServiceContraactDate + "</td>";
+                        } else {
+                            str += "<td></td>";
+                        }
+                        if (resp[l].ServiceContraactEndDate != null) {
+                            str += "<td>" + resp[l].ServiceContraactEndDate + "</td>";
+                        } else {
+                            str += "<td></td>";
+                        }
+
+                        str += "<td>" + resp[l].ServiceProvider_Name + "</td>";
+                        str += "<td>" + resp[l].Manufacturer_Name + "</td>";
+                        if (resp[l].Is_Active = 1) {
+                            str += "<td>Yes</td>";
+                        } else {
+                            str += "<td>No</td>";
+                        }
+
+                        str += "<td>" + resp[l].Created_By + "</td>";
+                        str += "<td>" + resp[l].Created_Date + "</td>";
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblAssetDetails').empty();
+                    $('#tblAssetDetails').append(str);
+                    $('#tblAssetDetails').DataTable().destroy();
+                    $('#tblAssetDetails').DataTable();
+
+
+
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+        $('#mdlAssetView').modal('show');
+    }
+    function fnAssetSearch() {
+          $.ajax({
+            url: '@Url.Action("Load_Asset_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>Unison Id</th>";
+                    str += "<th>Asset Name</th>";
+                    str += "<th>Installation Date</th>";
+                    str += "<th>System Id</th>";
+                    str += "<th>ServiceProvider Name</th>";
+                    str += "<th>Manufacturer Name</th>";
+                    str += "<th>Serial Number</th>";
+                    str += "<th>Hospital Name</th>";
+                    str += "<th>Select</th>";
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        str += "<td>" + resp[l].Unison_ID + "</td>";
+                        str += "<td>" + resp[l].Asset_Name + "</td>";
+                        str += "<td>" + resp[l].InstallationDate + "</td>";
+                        str += "<td>" + resp[l].SystemId + "</td>";
+                        str += "<td>" + resp[l].ServiceProvider_Name + "</td>";
+                        str += "<td>" + resp[l].Manufacturer_Name + "</td>";
+                        str += "<td>" + resp[l].SerialNumber + "</td>";
+                        str += "<td>" + resp[l].Hospital_Name + "</td>";
+                        str += "<td><a href='#' onclick=fnSelectasset(" + resp[l].Asset_Id + ");>Select</a></td>";
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblAssetSearch').empty();
+                    $('#tblAssetSearch').append(str);
+                    $('#tblAssetSearch').DataTable().destroy();
+                    $('#tblAssetSearch').DataTable();
+
+
+
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+        $('#mdlAssetSearch').modal('show');
+    }
+    function fnSelectasset(Id){
+        $('#ddlAssets').val(Id);
+        $('#mdlAssetSearch').modal('hide');
+        $("#ddlAssets").trigger('change');
+    }
+    //Asset POPUP end
+    function Load_Hospital_BYREQUESTORID(ID) {
+        $.ajax({
+            url: '@Url.Action("Load_Hospital_BYREQUESTORID", "Master")',
+            data:"Requestor_Id="+ID,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    $('#ddlHospital').empty();
+                    str += "<option value='-1'>Select</option>";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Hospital_Id + "'>" + resp[l].Hospital_Name + "</option>";
+                    }
+                    $('#ddlHospital').append(str);
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+    }
+    //-----------------------------------------------------------------------------------
+    //WHEN YOU SELECT Requestor Is Load Corresponding Hospital Lsit   One Direction No Reverse
+    //When You Select Hospital & Manufaturer its Load Asset Based on the Combination Two Direction.
+
+    $("#ddlAssets").change(function () {
+        debugger;
+        var Id = this.value;
+       // $('#ddlHospital').val('-1');
+        //$('#ddlManufaturer').val('-1');
+       //LOAD HOSPITAL BY ASSET ID
+        if (Id != "-1") {
+
+            Load_Hospital_BY_ASSET_Id(Id);
+        } else {
+            LoadManufaturer();
+            Load_Hospital();
+        }
+       //LOAD MANUFATURER BY ASSET ID
+
+        //Show Description
+        //lblDescription
+        if (Id == "-1") {
+            $('#lblDescription').html("Description:");
+        } else {
+            Load_AssetMaster_ShowDescription(Id); //
+        }
+
+    });
+     function Load_Hospital_BY_ASSET_Id(ID) {
+        $.ajax({
+            url: '@Url.Action("Load_Hospital_BY_ASSET_Id", "Master")',
+            data:"Asset_Id="+ID,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    $('#ddlHospital').empty();
+                    //str += "<option value='-1'>Select</option>";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Hospital_Id + "'>" + resp[l].Hospital_Name + "</option>";
+                    }
+                    $('#ddlHospital').append(str);
+
+                    var str1 = "";
+                    $('#ddlManufaturer').empty();
+                    //str1 += "<option value='-1'>Select</option>";
+                    for (var l = 0; l < resp.length; l++) {
+                        str1 += "<option value='" + resp[l].Maufacturer + "'>" + resp[l].Manufacturer_Name + "</option>";
+                    }
+                    $('#ddlManufaturer').append(str1);
+
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+    }
+     function Reload() {
+         location.reload();
+     }
+    function fnSearch() {
+        debugger
+         var UID= $.trim($('#txtUnisonIdSearch').val());
+         if (UID =="") {
+             ALERT("Please Enter the UnisonId");
+
+         } else {
+             $.ajax({
+                 url: '@Url.Action("Load_Incident_Master_UnisonId", "Master")',
+                 data: "Id=" + UID,
+                 type: "POST",
+                 async: false,
+                 success: function (resp) {
+                     debugger
+                     if (resp != null) {
+                         //var ac = JSON.stringify(resp[0]);
+                         //fnEdit(ac.replace(/\ /g, " & nbsp;"));
+                         fnEdit(resp[0]);
+                     } else {
+                         ALERT("No Details found for this Ticket");
+                     }
+                 }
+             });
+         }
+     }
+     function fnDeleteFile(Id) {
+         var r = confirm("Are you Sure You want to delete this file it");
+        if (r == true) {
+              $.ajax({
+                 url: '@Url.Action("DeleteAsset", "Master")',
+                 data: "Id=" + Id,
+                 type: "POST",
+                 async: false,
+                 success: function (resp) {
+                     if (resp != null) {
+                         console.log('Deleted');
+                         ALERT("Attachment Deleted Successfully.")
+                         $('#Md_Attach').modal('hide');
+                     }
+                 }
+         });
+        }
+
+     }
+    function Load_AssetMaster_ShowDescription(Id) {
+        $.ajax({
+            url: '@Url.Action("Load_Asset_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    for (var l = 0; l < resp.length; l++) {
+                        if (resp[l].Asset_Id == Id) {
+                            $('#lblDescription').html(resp[l].Asset_Description);
+                        }
+                    }
+                } else {
+                    $('#lblDescription').html("No Description");
+                }
+
+            }
+        });
+     }
+
+
+    //1.	For the selected Hospital, corresponding manufacturer to be loaded and asset to be loaded in combination of both.
+    //MAIL 26 MAY 2019 Changes
+    //ONE direction Load manufature based on Hospital not Reverse Direction
+    //Load assed based on manufaturer and hospital
+    //$("#ddlHospital").change(function () {
+    //    debugger;
+    //    var Id = this.value;
+    //    Load_Manufaturer_BYHospitalId(ID);
+    //});
+    function Load_Manufaturer_BYHospitalId(ID) {
+        $.ajax({
+            url: '@Url.Action("LoadManufacturerMaster", "Master")',
+            data: "Hospital_Id=" + ID,
+            async:false,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    $('#ddlManufaturer').empty();
+                    str += "<option value='-1'>Select</option>";
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Manufacturer_Id + "'>" + resp[l].Manufacturer_Name + "</option>";
+                    }
+                    $('#ddlManufaturer').append(str);
+                } else {
+                    ALERT("No Data");
+                }
+
+            }
+        });
+     }
+
+</script>
+

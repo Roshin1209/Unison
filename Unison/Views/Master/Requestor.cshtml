@@ -1,0 +1,374 @@
+﻿
+@{
+    ViewBag.Title = "Requestor";
+}
+
+<!-- Form Element area Start-->
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list" id="requestorcreate">
+                    @*<div class="basic-tb-hd">
+                            <h2>Input Text</h2>
+                            <p>Text Inputs with different sizes by height and column.</p>
+                        </div>*@
+                    <div class="cmp-tb-hd bcs-hd">
+                        <h2>Requestor List</h2>
+                        <p>Create Requestor List</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-support"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Requestor Name" id="txtRequestorName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-mail"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Email Address" id="txtEmailId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-phone"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Contact Number" id="txtContactNumber">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-btn-info"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Job Title" id="txtJobTitle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-btn-info"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Address" id="txtAddress">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    Hospital Name<i class="notika-icon notika-btn-info"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    @*<input type="text" class="form-control" placeholder="Hospital Name" id="txtHospitalName">*@
+                                    <select class="form-control" id="ddlHospital">
+                                        <option value="-1">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group ic-cmp-int">
+                                <div class="form-ic-cmp">
+                                    <i class="notika-icon notika-btn-info"></i>
+                                </div>
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control" placeholder="Unison Id" id="txtUnisonId">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <button class="btn btn-primary notika-btn-primary" id="btnCreate" onclick="fnSave();">Save</button>
+                            <button class="btn notika-btn-bluegray btn-reco-mg btn-button-mg" onclick="Cancel();">Cancel</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>List Of Requestor</h2>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-striped"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link href="~/Content/TEST/datatables.css" rel="stylesheet" />
+<script src="~/Content/TEST/datatables.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+    //Global Variables
+    var GlobalId = 0;
+    //Global Variables
+    var Role = @Html.Raw(Json.Encode(@Session["Role"]));
+    $(document).ready(function ()
+    {
+        if (Role != 'Admin' && Role != 'User') {
+            $('#requestorcreate').hide();
+        }
+        LoadData();
+        Load_Hospital();
+    });
+    //Document Ready Closed
+    function fnEdit(Id) {
+        debugger;
+        var obj = Id;// JSON.parse(Id);
+        $('#txtRequestorName').val(obj.RequestorName);
+        $('#txtEmailId').val(obj.Email_Id);
+        $('#txtContactNumber').val(obj.Contact_Number);
+        $('#txtJobTitle').val(obj.JobTitle);
+        $('#txtAddress').val(obj.Address);
+        //$('#txtHospitalName').val(obj.Hospital_Name);
+        $('#ddlHospital').val(obj.Hospital_Id);
+        $('#txtUnisonId').val(obj.UnisonId);
+        GlobalId = obj.Id;
+        Is_Edit = true;
+        $('#btnCreate').text('Update')
+    }
+    function fnSave()
+    {
+        var RequestorName = $.trim($('#txtRequestorName').val());
+        var EmailId = $.trim($('#txtEmailId').val());
+        var ContactNumber = $.trim($('#txtContactNumber').val());
+        var JobTitle = $.trim($('#txtJobTitle').val());
+        var Address = $.trim($('#txtAddress').val());
+        var HospitalName = $.trim($('#ddlHospital').val());// $.trim($('#txtHospitalName').val());
+        var UnisonId = $.trim($('#txtUnisonId').val());
+        if (RequestorName == "") {
+            ALERT('Please Enter the Requestor Name');
+            return false;
+        }
+        //if (EmailId == "") {
+        //    ALERT('Please Enter the Email Id');
+        //    return false;
+        //}
+        if (ContactNumber == "") {
+            ALERT('Please Enter the Contact Number');
+            return false;
+        }
+        //if (JobTitle == "") {
+        //    ALERT('Please Enter the Job Title');
+        //    return false;
+        //}
+        //if (Address == "") {
+        //    ALERT('Please Enter the Address');
+        //    return false;
+        //}
+        if (HospitalName == "") {
+            ALERT('Please Enter the Hospital Name');
+            return false;
+        }
+        //if (UnisonId == "") {
+        //    ALERT('Please Enter the Unison Id');
+        //    return false;
+        //}
+        $.ajax({
+            url: '@Url.Action("SaveRequestorMaster", "Master")',
+            data: "RequestorName=" + RequestorName + "&EmailId=" + EmailId + "&ContactNumber=" + ContactNumber + "&JobTitle=" + JobTitle + "&Address=" + Address + "&HospitalName=" + HospitalName + "&UnisonId=" + UnisonId + "&Id=" + GlobalId,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    if (resp.split(':')[0] == "SUCCESS") {
+                        if (GlobalId == 0) {
+                            ALERT("Saved Successfuly.");
+                        }
+                        else {
+                            ALERT("Updated Successfuly.");
+                        }
+                        //$('#txtRequestorName').val('');
+                        //$('#txtEmailId').val('');
+                        //$('#txtContactNumber').val('');
+                        //$('#txtJobTitle').val('');
+                        //$('#txtAddress').val('');
+                        //$('#txtHospitalName').val('');
+                        //$('#txtUnisonId').val('');
+                        //GlobalId = 0;
+                        Cancel();
+                        LoadData();
+                    } else {
+                        ALERT("Error");
+                    }
+                } else {
+                    ALERT("Error");
+                }
+
+            }
+        });
+
+    }
+    function LoadData() {
+        $.ajax({
+            url: '@Url.Action("Load_requestor_Master", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+                    str += "<thead>";
+                    str += "<tr>";
+                    str += "<th>Requestor Name</th>";
+                    str += "<th>Email Id</th>";
+                    str += "<th>Contact Number</th>";
+                    str += "<th>JobTitle</th>";
+                    str += "<th>Address</th>";
+                    str += "<th>Hospital Name</th>";
+                    str += "<th>UnisonId</th>";
+                    str += "<th>Is Active</th>";
+                    str += "<th>Created By</th>";
+                    str += "<th>Created date</th>";
+                    if (Role == 'Admin' || Role == 'User') {
+                        str += "<th>Action</th>";
+                        str += "<th>Delete</th>";
+                    }
+                    str += "</tr>";
+                    str += "</thead>";
+                    str += "<tbody>";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<tr>";
+                        str += "<td>" + resp[l].RequestorName + "</td>";
+                        str += "<td>" + resp[l].Email_Id + "</td>";
+                        str += "<td>" + resp[l].Contact_Number + "</td>";
+                        str += "<td>" + resp[l].JobTitle + "</td>";
+                        str += "<td>" + resp[l].Address + "</td>";
+                        str += "<td>" + resp[l].Hospital_Name + "</td>";
+                        str += "<td>" + resp[l].UnisonId + "</td>";
+                        if (resp[l].Is_Active = 1) {
+                            str += "<td>Yes</td>";
+                        } else {
+                            str += "<td>No</td>";
+                        }
+
+                        str += "<td>" + resp[l].Created_By + "</td>";
+                        str += "<td>" + resp[l].Created_Date + "</td>";
+                        var ac = JSON.stringify(resp[l]);
+                        if (Role == 'Admin' || Role == 'User') {
+                            str += "<td><a href='#' onclick=fnEdit(" + ac.replace(/\ /g, "&nbsp;") + ");>Edit</a></td>";
+                            str += "<td><a href='#' onclick=Delete(" + resp[l].Id + ");>Delete</a></td>";
+                        }
+                        str += "</tr>";
+                    }
+                    str += "</tbody>";
+                    $('#tblData').empty();
+                    $('#tblData').append(str);
+                    $('#tblData').DataTable().destroy();
+                    $('#tblData').DataTable(
+                        {
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'copyHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6, 7,8,9]
+                                    }
+                                },
+                                {
+                                    extend: 'excelHtml5',
+                                    className: 'btn btn-primary notika-btn-primary waves-effect',
+                                    exportOptions: {
+                                        columns: [0, 1, 2, 3, 4, 5, 6, 7,8,9]
+                                    }
+                                }
+                            ]
+                        }
+                    );
+
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+    }
+    function Cancel() {
+        $('#txtRequestorName').val('');
+        $('#txtEmailId').val('');
+        $('#txtContactNumber').val('');
+        $('#txtJobTitle').val('');
+        $('#txtAddress').val('');
+        //$('#txtHospitalName').val('');
+        $('#txtUnisonId').val('');
+        $('#ddlHospital').val('-1');
+        GlobalId = 0;
+        $('#btnCreate').text('Save');
+    }
+    function Load_Hospital() {
+        $.ajax({
+            url: '@Url.Action("LoadHospitalMaster", "Master")',
+            //data:"Problem_Categroy="+Prob_Cat,
+            type: "POST",
+            success: function (resp) {
+                if (resp != null) {
+                    var str = "";
+
+                    for (var l = 0; l < resp.length; l++) {
+                        str += "<option value='" + resp[l].Hospital_Id + "'>" + resp[l].Hospital_Name + "</option>";
+                    }
+                    $('#ddlHospital').append(str);
+                } else {
+                    //ALERT("Error");
+                }
+
+            }
+        });
+    }
+    function Delete(Id) {
+        var r = confirm("Are you Sure You want to delete it");
+        if (r == true) {
+             $.ajax({
+            url: '@Url.Action("Delete_RequestorMaster", "Master")',
+            data: "Id=" + Id,
+            type: "POST",
+            success: function (resp) {
+                LoadData();
+            }
+        });
+        } else {
+        }
+
+    }
+</script>
+
+
+
+
